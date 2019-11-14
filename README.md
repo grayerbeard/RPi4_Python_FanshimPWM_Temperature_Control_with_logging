@@ -50,8 +50,8 @@ following are provided as a template needing editing to work on a particular sys
 following are just back ups of old versions for reference
 <ul>
   <ul>
-  <li>config.py old version for reference</li
-  <li>config.cfg old version for reference</li
-  <li>cpu_temp_log.py old version for reference</li 
+    <li>config.py old version for reference</li>
+    <li>config.cfg old version for reference</li>
+    <li>cpu_temp_log.py old version for reference</li>
+  </ul>
 </ul>
-    </ul>

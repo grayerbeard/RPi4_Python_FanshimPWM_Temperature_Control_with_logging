@@ -3,7 +3,7 @@
 #
 #   for use with Python 3
 
-#	config_037.py module for the config class
+#	cpu_monitor_config.py module for the config class
 #   testing in shed version OK in sauna
 #  
 #	This program is free software; you can redistribute it and/or modify
@@ -38,7 +38,7 @@ from sys import argv as sys_argv
 #from w1thermsensor import W1ThermSensor
 
 # Local application imports
-from utility_037 import pr,make_time_text,send_by_ftp
+from utility import pr,make_time_text,send_by_ftp
 
 
 class class_config:

@@ -108,6 +108,11 @@ last_total = 0
 loop_time = 0
 correction = 4.02
 
+print("FTP Cred File is: ",config.ftp_creds_filename)
+sys_exit()
+
+
+
 while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	try:
 		loop_start_time = datetime.now()

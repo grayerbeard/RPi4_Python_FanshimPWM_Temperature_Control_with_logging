@@ -92,16 +92,16 @@ class class_config:
 		self.html_filename = ""
 
 		self.log_filename = ""
-		self.temp_log_filename = ""
+		#self.temp_log_filename = ""
 		self.log_filename_save_as = ""
-		self.temp_log_filename_save_as = ""
+		#self.temp_log_filename_save_as = ""
 
-		self.status_html_filename = ""
-		self.log_html_filename = ""
+		#self.status_html_filename = ""
+		#self.log_html_filename = ""
 		self.local_www_html_filename = ""
-		self.local_www_log_html_filename = "" 
-		self.local_www_status_html_filename = "" 
-		self.local_www_log_csv = ""
+		#self.local_www_log_html_filename = "" 
+		#self.local_www_status_html_filename = "" 
+		#self.local_www_log_csv = ""
 		self.log_on = False
 		self.temp_log_on = False
 		#self.sensor_presconfig.s_filename =ent = False now a mysensor value

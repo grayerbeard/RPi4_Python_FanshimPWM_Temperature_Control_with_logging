@@ -48,8 +48,8 @@ else : # no file so my_sensorneeds to be written
 random_text_number = str(random_randint(1,1001))
 try:
 	print("start copy using: ", random_text_number)
-			config.status_html_filename = ""
-		config.log_html_filename
+	config.status_html_filename = ""
+	config.log_html_filename
 	copyfile("cpu_log.html", "old/" + "cpu_log" + random_text_number + ".html")
 	print("finish copy")
 except:

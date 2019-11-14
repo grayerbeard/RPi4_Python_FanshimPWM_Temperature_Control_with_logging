@@ -171,7 +171,8 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu_buffer.line_values[8] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
 		cpu_buffer.line_values[9] = str(int(c_or_1)) + str(int(c_or_2)) + str(int(c_or_3)) + str(int(c_or_4))
 
-		cpu_buffer.pr(buffer_increment_flag,0,loop_start_time)
+		refresh_time = config.scan_delay + (config.scan_delay/3)
+		cpu_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
 
 		config.scan_count += 1
 		check = 0
@@ -196,7 +197,8 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu_buffer.line_values[7] = str(cpu.cpu_disk) + "%"
 		cpu_buffer.line_values[8] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
 		cpu_buffer.line_values[9] = "NoFlag"
-		cpu_buffer.pr(buffer_increment_flag,0,loop_start_time)
+		refresh_time = config.scan_delay + (config.scan_delay/3)
+		cpu_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
 		if throttle == 0:
 			buffer_increment_flag = False
 	cpu.control_fan()

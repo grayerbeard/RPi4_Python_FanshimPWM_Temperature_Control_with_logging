@@ -24,12 +24,12 @@
 
 #   This project uses modules to hold all the classes 
 #   the files are all named the same as the Class name plus the version number
-#   e.g File with the "text buffer class"; the calss is "class_text_bffr" for version 034 is in "text_bffr_034.py"
+#   e.g File with the "text buffer class"; the calss is "class_text_buffer" for version 034 is in "text_buffer_034.py"
 #
 #   Class list
 #
 #   "wd"    class with functions to write and read data to a file for the Watch dog function
-#   "text_bffr"   class with routines to store a rotating buffer and output its contents  
+#   "text_buffer"   class with routines to store a rotating buffer and output its contents  
 #                 to html files and send by FTP and copy to local web site             
 #   "my_sensors" class with functions to read temperature data from sensors  
 #   "smartplug"  class to control and monitor tplink HP110 smartplugs
@@ -60,7 +60,7 @@ from time import sleep as time_sleep
 # None
 
 # Local application imports
-from text_bffr import class_text_bffr
+from text_buffer import class_text_buffer
 from config import class_config
 
 #from module_034 import class_schedule,class_my_sensors,class_smartplug
@@ -73,7 +73,7 @@ from utility_037 import fileexists,pr,make_time_text
 from wd_037 import class_wd
 	
 def main(argv):
-	global status_bffr
+	global status_buffer
 	last_ref = -1
 	here = "main"
 
@@ -193,97 +193,99 @@ def main(argv):
 	if config.sauna:
 	#	# Headings: Time,Scan#,Target,Ref Temp,On,Offset,Detect Off
 		smart_log_width = 0   ################# ????????????
-	#	log_bffr_width = 4 + 3
+	#	log_buffer_width = 4 + 3
 		
 	else:
 		# Headings: Time,Scan#,Target,Ref Temp,T1,T2,T3,T4,T5,I1,V1,P1,T1,I2,V2,P2,T2
 		#   1,3,5,4,4 
 		smart_log_width = 8    #################### ?????????????
-	#	log_bffr_width = 4 + sensors_max_number + smart_log_width
+	#	log_buffer_width = 4 + sensors_max_number + smart_log_width
 #####
-	log_bffr_headings = ["hdg01","hdg02","hdg03","hdg04","hdg05","hdg06","hdg07","hdg08","hdg09","hdg10","hdg11","hdg14","hdg15","hdg16","hdg17","hdg18","hdg19","hdg20","hdg21"]
-	log_bffr_flag = True
-	log_bffr = class_text_bffr(100,log_bffr_headings,"log",config,log_bffr_flag)
+	log_buffer_headings = ["hdg01","hdg02","hdg03","hdg04","hdg05","hdg06","hdg07","hdg08","hdg09","hdg10","hdg11","hdg14","hdg15","hdg16","hdg17","hdg18","hdg19","hdg20","hdg21"]
+	log_buffer_flag = True
+	log_buffer = class_text_buffer(100,log_buffer_headings,"log",config,log_buffer_flag)
 #######
 
 	#if not(config.sauna):
 	#	for ind in range(1,sensors_max_number+1):
-	#		log_bffr.set_bffr_heading("T" + str(ind))
+	#		log_buffer.set_buffer_heading("T" + str(ind))
 
-	#log_bffr.set_bffr_heading("Scan#")
-	#log_bffr.set_bffr_heading("Target")
-	#log_bffr.set_bffr_heading("Ref Temp")
+	#log_buffer.set_buffer_heading("Scan#")
+	#log_buffer.set_buffer_heading("Target")
+	#log_buffer.set_buffer_heading("Ref Temp")
 
 
 	#if config.sauna:
-	#	log_bffr.set_bffr_heading("On")
-	#	log_bffr.set_bffr_heading("Offset")
-	#	log_bffr.set_bffr_heading("Detect Off")
+	#	log_buffer.set_buffer_heading("On")
+	#	log_buffer.set_buffer_heading("Offset")
+	#	log_buffer.set_buffer_heading("Detect Off")
 	#else:	
-	#	log_bffr.set_bffr_heading("I1")
-	#	log_bffr.set_bffr_heading("V1")
-	#	log_bffr.set_bffr_heading("P1")
-	#	log_bffr.set_bffr_heading("T1")
+	#	log_buffer.set_buffer_heading("I1")
+	#	log_buffer.set_buffer_heading("V1")
+	#	log_buffer.set_buffer_heading("P1")
+	#	log_buffer.set_buffer_heading("T1")
 
-	#	log_bffr.set_bffr_heading("I2")
-	#	log_bffr.set_bffr_heading("V2")
-	#	log_bffr.set_bffr_heading("P2")
-	#	log_bffr.set_bffr_heading("T2")
+	#	log_buffer.set_buffer_heading("I2")
+	#	log_buffer.set_buffer_heading("V2")
+	#	log_buffer.set_buffer_heading("P2")
+	#	log_buffer.set_buffer_heading("T2")
 
 # Pattern for setting up buffer
 #to set up replace "[name]" with the buffer name
 #enter headings
 #set flag True/False if want csv log file also made and sent
-#[name]_bffr_width = [width]
+#[name]_buffer_width = [width]
 #headings = ["[heading1]","[heading2]","[heading3]", ......]
-#[name]_cpu_log_bffr_flag = [True/False] #if also want csv log file 
-#[name]_bffr = class_text_bffr(200,headings,"[name]",config,[name]_log_bffr_flag)
-#[name]_bffr_values = [""] * ([name]_bffr_width-1)
+#[name]_cpu_log_buffer_flag = [True/False] #if also want csv log file 
+#[name]_buffer = class_text_buffer(200,headings,"[name]",config,[name]_log_buffer_flag)
+#[name]_buffer_values = [""] * ([name]_buffer_width-1)
 
 
 
-	#status_bffr_width = 3
-	#status_bffr_values = [""] * (status_bffr_width-1)
+	#status_buffer_width = 3
+	#status_buffer_values = [""] * (status_buffer_width-1)
 
 	########### needed ???????
-	debug_bffr_width = 4 # One More than max number in values array to allow for col with time stamp
-	debug_bffr_values = ["not set"] * (debug_bffr_width - 1)
+	debug_buffer_width = 4 # One More than max number in values array to allow for col with time stamp
+	debug_buffer_values = ["not set"] * (debug_buffer_width - 1)
 	########################
 	
-	#debug_bffr = class_text_bffr(200,debug_bffr_width,"debug",config)
-	debug_bffr_headings = ["hdg01","hdg02","hdg03","hdg04","hdg05","hdg06","hdg07","hdg08","hdg09","hdg10","hdg11","hdg14","hdg15","hdg16","hdg17","hdg18","hdg19","hdg20","hdg21"]
-	debug_bffr_flag = True
-	debug_bffr = class_text_bffr(200,debug_bffr_headings,"log",config,debug_bffr_flag)
+	#debug_buffer = class_text_buffer(200,debug_buffer_width,"debug",config)
+	debug_buffer_headings = ["hdg01","hdg02","hdg03","hdg04","hdg05","hdg06","hdg07","hdg08","hdg09","hdg10","hdg11","hdg14","hdg15","hdg16","hdg17","hdg18","hdg19","hdg20","hdg21"]
+	debug_buffer_flag = True
+	debug_buffer = class_text_buffer(200,debug_buffer_headings,"log",config,debug_buffer_flag)
 
-	#debug_bffr.set_bffr_heading("Scan#")
-	#debug_bffr.set_bffr_heading("Line")
-	#debug_bffr.set_bffr_heading("Third Thing")
+	#debug_buffer.set_buffer_heading("Scan#")
+	#debug_buffer.set_buffer_heading("Line")
+	#debug_buffer.set_buffer_heading("Third Thing")
 	html_filename = "debug.html"
 	html_filename_save_as = config.prog_path + "debug.html"
 	www_filename = config.local_dir_www + "debug.html"
 	
 	####################### old not needed ??
-	#debug_bffr.set_bffr_filenames(html_filename,html_filename_save_as,www_filename,config.ftp_creds_filename)
+	#debug_buffer.set_buffer_filenames(html_filename,html_filename_save_as,www_filename,config.ftp_creds_filename)
 	#####################
 
-	debug_bffr.line_values[0] = "Debug Buffer Set"
-	debug_bffr.line_values[1] = "Software version: " + prg_version
-	debug_bffr.line_values[2] = ""
+	debug_buffer.line_values[0] = "Debug Buffer Set"
+	debug_buffer.line_values[1] = "Software version: " + prg_version
+	debug_buffer.line_values[2] = ""
 	
-	#debug_bffr.pr(True,0, datetime.now())
-	debug_bffr.pr(True,0, datetime.now())
+	#debug_buffer.pr(True,0, datetime.now())
+	refresh_time = config.scan_delay + (config.scan_delay/3)
+	#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+	debug_buffer.pr(True,0, datetime.now())
 
 	
-	#status_bffr = class_text_bffr(100,status_bffr_width,"status",config)
-	status_bffr_headings = ["hdg01","hdg02","hdg03","hdg04","hdg05","hdg06","hdg07","hdg08","hdg09","hdg10","hdg11","hdg14","hdg15","hdg16","hdg17","hdg18","hdg19","hdg20","hdg21"]
-	status_bffr_flag = True
-	status_bffr = class_text_bffr(100,status_bffr_headings,"log",config,status_bffr_flag)
+	#status_buffer = class_text_buffer(100,status_buffer_width,"status",config)
+	status_buffer_headings = ["hdg01","hdg02","hdg03","hdg04","hdg05","hdg06","hdg07","hdg08","hdg09","hdg10","hdg11","hdg14","hdg15","hdg16","hdg17","hdg18","hdg19","hdg20","hdg21"]
+	status_buffer_flag = True
+	status_buffer = class_text_buffer(100,status_buffer_headings,"log",config,status_buffer_flag)
 
 
-	# was status_bffr.set_bffr_get_heading("Reason")
+	# was status_buffer.set_buffer_get_heading("Reason")
 	# now set to August 9th 2018	print("start")
-	#status_bffr.set_bffr_heading("Reason")
-	#status_bffr.set_bffr_heading("Message")
+	#status_buffer.set_buffer_heading("Reason")
+	#status_buffer.set_buffer_heading("Message")
 	
 	my_sensors = class_my_sensors(sensors_max_number)
  
@@ -393,10 +395,10 @@ def main(argv):
 
 
 	############### ????????????
-	# status_bffr.set_bffr_filenames(config.status_html_filename,config.status_html_filename_save_as,config.local_www_status_html_filename,config.ftp_creds_filename)
+	# status_buffer.set_buffer_filenames(config.status_html_filename,config.status_html_filename_save_as,config.local_www_status_html_filename,config.ftp_creds_filename)
 	###################### ????
 	##############
-	# log_bffr.set_bffr_filenames(config.log_html_filename,config.log_html_filename_save_as,config.local_www_log_html_filename,config.ftp_creds_filename)
+	# log_buffer.set_buffer_filenames(config.log_html_filename,config.log_html_filename_save_as,config.local_www_log_html_filename,config.ftp_creds_filename)
 	####################
 	my_sensors.set_status_html_filename(config.status_html_filename)
 	my_sensors.set_log_html_filename(config.log_html_filename)
@@ -469,9 +471,11 @@ def main(argv):
 	
 	# Initial setup Complete so write messages
 	for initial_ind in range(0,len(init_printout)):
-		status_bffr.line_values[0] = "Init Report: "
-		status_bffr.line_values[1] = init_printout[initial_ind]
-		status_bffr.pr(True,0, datetime.now())		
+		status_buffer.line_values[0] = "Init Report: "
+		status_buffer.line_values[1] = init_printout[initial_ind]
+		refresh_time = config.scan_delay + (config.scan_delay/3)
+		#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+		status_buffer.pr(True,0, datetime.now())		
 
 	if config.exit_flag:
 		sys_exit()
@@ -510,9 +514,11 @@ def main(argv):
 	if config.use_schedule:
 		sch_filename = config.prog_path + "schedule.csv"
 		if fileexists(sch_filename):
-			status_bffr.line_values[0] = "Schedule Found in: "
-			status_bffr.line_values[1] = sch_filename
-			status_bffr.pr(True,1, datetime.now())
+			status_buffer.line_values[0] = "Schedule Found in: "
+			status_buffer.line_values[1] = sch_filename
+			refresh_time = config.scan_delay + (config.scan_delay/3)
+			#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+			status_buffer.pr(True,1, datetime.now())
 			schedule = class_schedule()
 			schedule.read_in_schedule_data(sch_filename)
 		else:	
@@ -560,86 +566,102 @@ def main(argv):
 				config.target_offset = - 0.1*(schedule.target_temp - schedule.target_full_power)
 			if schedule.target_full_power > (schedule.target_temp - 1):
 				schedule.target_full_power = schedule.target_temp - 1
-				status_bffr.line_values[0] = "Target Full Power not at least 1 deg below Target"
-				status_bffr.line_values[1] = "Using : " + schedule.target_full_power + " for target full power"
-				status_bffr.pr(True,3, datetime.now())	
+				status_buffer.line_values[0] = "Target Full Power not at least 1 deg below Target"
+				status_buffer.line_values[1] = "Using : " + schedule.target_full_power + " for target full power"
+				refresh_time = config.scan_delay + (config.scan_delay/3)
+				#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)				
+				status_buffer.pr(True,3, datetime.now())	
 		elif config.use_schedule:	
 			# Not in sauna mode so get target temps from schedule file
 			schedule.get_target_temp(time_now,config.dbug)
 			if schedule.error_message != "OK" :
-				status_bffr.line_values[0] = "Schedule Error. Will use last if they < max and > min allowed"
-				status_bffr.line_values[1] = schedule.error_message
-				status_bffr.pr(True,1, datetime.now())
+				status_buffer.line_values[0] = "Schedule Error. Will use last if they < max and > min allowed"
+				refresh_time = config.scan_delay + (config.scan_delay/3)
+				#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+				status_buffer.line_values[1] = schedule.error_message
+				refresh_time = config.scan_delay + (config.scan_delay/3)
+				#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+				status_buffer.pr(True,1, datetime.now())
 			# Check that the full power is not greater than the target as then control would not work right
-			status_bffr.line_values[0] = ""
+			status_buffer.line_values[0] = ""
 			if schedule.target_full_power > config.max_target :
 				schedule.target_full_power = config.max_target
-				status_bffr.line_values[0] = "Target Full Power reduced to max "
+				status_buffer.line_values[0] = "Target Full Power reduced to max "
 			elif schedule.target_full_power < config.min_target :
 				schedule.target_full_power = config.min_target
-				status_bffr.line_values[0] = "Target Full Power increased to min "
+				status_buffer.line_values[0] = "Target Full Power increased to min "
 			if schedule.target_temp > config.max_target :
 				schedule.target_temp = config.max_target
-				status_bffr.line_values[0] = status_bffr.line_values[0] + "Target Temp reduced to max "
+				status_buffer.line_values[0] = status_buffer.line_values[0] + "Target Temp reduced to max "
 			elif schedule.target_full_power < config.min_target :
 				schedule.target_temp = config.min_target
-				status_bffr.line_values[0] = status_bffr.line_values[0] + "Target Temp increased to min "
+				status_buffer.line_values[0] = status_buffer.line_values[0] + "Target Temp increased to min "
 			if schedule.target_full_power > schedule.target_temp:
 				schedule.target_full_power = schedule.target_temp
-				status_bffr.line_values[0] = status_bffr.line_values[0] + "Target Full Power was not < Target"
-			if status_bffr.line_values[0] != "" :
-				status_bffr.line_values[1] = "Using : " + str(schedule.target_full_power) + " for full pwr with "+ \
+				status_buffer.line_values[0] = status_buffer.line_values[0] + "Target Full Power was not < Target"
+			if status_buffer.line_values[0] != "" :
+				status_buffer.line_values[1] = "Using : " + str(schedule.target_full_power) + " for full pwr with "+ \
 					str(schedule.target_temp) + " as target"
-				status_bffr.pr(True,3, datetime.now())	
+				refresh_time = config.scan_delay + (config.scan_delay/3)
+				#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+				status_buffer.pr(True,3, datetime.now())	
 			if (config.last_target != schedule.target_temp) or  \
 				(config.last_target_full_power != schedule.target_full_power):
 				if abs(schedule.target_temp - config.last_target) <  0.25 :
 					status_re_write_flag = False
-					status_bffr.line_values[0] = "Target Change"
+					status_buffer.line_values[0] = "Target Change"
 				else:
 					status_re_write_flag = True
-					status_bffr.line_values[0] = "Target Change"
-				status_bffr.line_values[1] = str(config.last_target) + "/" + str(config.last_target_full_power) \
+					status_buffer.line_values[0] = "Target Change"
+				status_buffer.line_values[1] = str(config.last_target) + "/" + str(config.last_target_full_power) \
 					+ " to " + str(schedule.target_temp) + 	"/" + str(schedule.target_full_power)
-				status_bffr.pr(status_re_write_flag,3, datetime.now())	
+				refresh_time = config.scan_delay + (config.scan_delay/3)
+				#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+				status_buffer.pr(status_re_write_flag,3, datetime.now())	
 				config.last_target = schedule.target_temp
 				config.last_target_full_power = schedule.target_full_power
 		#So in underfloor on heat mode so set temperatures as if in sauna mode from the config file		
 		elif config.underfloor:
-			status_bffr.line_values[0] = ""
+			status_buffer.line_values[0] = ""
 			schedule.target_temp = config.default_target
 			schedule.target_full_power = config.default_target_full_power
 			if schedule.target_full_power > (schedule.target_temp - 1):
 				schedule.target_full_power = schedule.target_temp - 1
-				status_bffr.line_values[0] = "UF Target Full Power not at least 1 deg below Target"
-				status_bffr.line_values[1] = "UF Using : " + schedule.target_full_power + " for target full power"
-				status_bffr.pr(True,3, datetime.now())	
+				status_buffer.line_values[0] = "UF Target Full Power not at least 1 deg below Target"
+				status_buffer.line_values[1] = "UF Using : " + schedule.target_full_power + " for target full power"
+				refresh_time = config.scan_delay + (config.scan_delay/3)
+				#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+				status_buffer.pr(True,3, datetime.now())	
 			if schedule.target_temp > config.max_target :
 				schedule.target_temp = config.max_target
-				status_bffr.line_values[0] = status_bffr.line_values[0] + "UF Target Temp reduced to max "
+				status_buffer.line_values[0] = status_buffer.line_values[0] + "UF Target Temp reduced to max "
 			elif schedule.target_full_power < config.min_target :
 				schedule.target_temp = config.min_target
-				status_bffr.line_values[0] = status_bffr.line_values[0] + "UF Target Temp increased to min "
+				status_buffer.line_values[0] = status_buffer.line_values[0] + "UF Target Temp increased to min "
 			if schedule.target_full_power > schedule.target_temp:
 				schedule.target_full_power = schedule.target_temp
-				status_bffr.line_values[0] = status_bffr.line_values[0] + "UF Target Full Power was not < Target"
-			if status_bffr.line_values[0] != "" :
-				status_bffr.line_values[1] = "UF Using : " + str(schedule.target_full_power) + " for full pwr with "+ \
+				status_buffer.line_values[0] = status_buffer.line_values[0] + "UF Target Full Power was not < Target"
+			if status_buffer.line_values[0] != "" :
+				status_buffer.line_values[1] = "UF Using : " + str(schedule.target_full_power) + " for full pwr with "+ \
 					str(schedule.target_temp) + " as target"
-				status_bffr.pr(True,3, datetime.now())	
+				refresh_time = config.scan_delay + (config.scan_delay/3)
+				#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+				status_buffer.pr(True,3, datetime.now())	
 			if (config.last_target != schedule.target_temp) or  \
 				(config.last_target_full_power != schedule.target_full_power):
 				# print("Change detected")
 				if abs(schedule.target_temp - config.last_target) <  0.25 :
 					status_re_write_flag = False
-					status_bffr.line_values[0] = "UF Target Change"
+					status_buffer.line_values[0] = "UF Target Change"
 				else:
 					status_re_write_flag = True
-					status_bffr.line_values[0] = "UF Target Change"
-				# status_bffr.line_values[0] = "Target Change"
-				status_bffr.line_values[1] = str(config.last_target) + "/" + str(config.last_target_full_power) \
+					status_buffer.line_values[0] = "UF Target Change"
+				# status_buffer.line_values[0] = "Target Change"
+				status_buffer.line_values[1] = str(config.last_target) + "/" + str(config.last_target_full_power) \
 					+ " to " + str(schedule.target_temp) + 	"/" + str(schedule.target_full_power)
-				status_bffr.pr(status_re_write_flag,3, datetime.now())	
+				refresh_time = config.scan_delay + (config.scan_delay/3)
+				#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+				status_buffer.pr(status_re_write_flag,3, datetime.now())	
 				config.last_target = schedule.target_temp
 				config.last_target_full_power = schedule.target_full_power
 				
@@ -700,10 +722,12 @@ def main(argv):
 							config.target_offset = - (schedule.target_temp - schedule.target_full_power)
 			else:
 				print("No Ref",  len(my_sensors.reading),  config.ref_sensor_index )
-				status_bffr.line_values[0] = "Error Message"
-				status_bffr.line_values[1] = ("No ref line 469" + str(len(my_sensors.reading)) +
+				status_buffer.line_values[0] = "Error Message"
+				status_buffer.line_values[1] = ("No ref line 469" + str(len(my_sensors.reading)) +
 				                          ":" + str(config.ref_sensor_index)) 
-				status_bffr.pr(True,4, datetime.now())
+				refresh_time = config.scan_delay + (config.scan_delay/3)
+				#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+				status_buffer.pr(True,4, datetime.now())
 		else :	
 			if (len(my_sensors.reading) > 0) and (config.ref_sensor_index != -1 ):
 
@@ -759,9 +783,11 @@ def main(argv):
 
 			else:
 				print ("No Control")
-				status_bffr.line_values[0] = "Error Message"
-				status_bffr.line_values[1] = "No ref line 691"
-				status_bffr.pr(True,5, datetime.now())
+				status_buffer.line_values[0] = "Error Message"
+				status_buffer.line_values[1] = "No ref line 691"
+				refresh_time = config.scan_delay + (config.scan_delay/3)
+				#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+				status_buffer.pr(True,5, datetime.now())
 # ****************************
 #  End  of heater Control *
 # ****************************
@@ -782,17 +808,17 @@ def main(argv):
 				my_sensors.send_log_by_ftp(config.dbug_ftp,config.log_directory,config.ftp_timeout)
 				my_sensors.copy_log_to_www(config.dbug_ftp)
 				config.last_ftplog = config.scan_count
-			log_bffr_append_flag = True	
+			log_buffer_append_flag = True	
 			config.ftplog_count = 0
 		else:
 			config.ftplog_count += 1
 			#print("Not logging so incremented count to: ",config.ftplog_count, "Then print to screen")
 			if config.scan_count < 3 : # config.ftp_log_max_count:
 				#print("Less Than 2 >> True",config.scan_count)
-				log_bffr_append_flag = True
+				log_buffer_append_flag = True
 			else:
 				#print("2 or More >> False",config.scan_count)
-				log_bffr_append_flag = False
+				log_buffer_append_flag = False
 		if config.sauna != True:
 			# Make sure up to date with Smartplug info for log html file
 			responce = smartplug.get_smartplug_status(config.dbug,config)
@@ -804,24 +830,30 @@ def main(argv):
 		
 
 
-		log_bffr.line_values = my_sensors.make_printout_for_screen(schedule.target_temp,my_sensors.reading[config.ref_sensor_index],config,smartplug)
-		log_bffr.pr(log_bffr_append_flag,0,datetime.now())
-		#log_bffr.pr(log_bffr_append_flag,0, my_sensors.make_printout_for_screen(schedule.target_temp,my_sensors.reading[config.ref_sensor_index],config,smartplug))
+		log_buffer.line_values = my_sensors.make_printout_for_screen(schedule.target_temp,my_sensors.reading[config.ref_sensor_index],config,smartplug)
+		refresh_time = config.scan_delay + (config.scan_delay/3)
+		#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+		log_buffer.pr(log_buffer_append_flag,0,datetime.now())
+		#log_buffer.pr(log_buffer_append_flag,0, my_sensors.make_printout_for_screen(schedule.target_temp,my_sensors.reading[config.ref_sensor_index],config,smartplug))
 
 
 		# Following can be used to log the time taken to talk to smart plugs
-		#debug_bffr.line_values[0] = "Scan : " + str(config.scan_count)
+		#debug_buffer.line_values[0] = "Scan : " + str(config.scan_count)
 		#if config.sauna != True:
-		#	debug_bffr.line_values[0] = debug_bffr.line_values[0] + " GetStat Errs: " + str(smartplug.get_status_error_count)
-		#debug_bffr.line_values[1] = "Maximum Smartplug Time Was " + str(round(smartplug.max_time/1000000,4)) + "secs"
-		#debug_bffr.line_values[2] = "Timeout Is " + str(round(smartplug.timeout/1000000,4)) + "secs"
-		#debug_bffr.pr(True,0, datetime.now())
+		#	debug_buffer.line_values[0] = debug_buffer.line_values[0] + " GetStat Errs: " + str(smartplug.get_status_error_count)
+		#debug_buffer.line_values[1] = "Maximum Smartplug Time Was " + str(round(smartplug.max_time/1000000,4)) + "secs"
+		#debug_buffer.line_values[2] = "Timeout Is " + str(round(smartplug.timeout/1000000,4)) + "secs"
+		#refresh_time = config.scan_delay + (config.scan_delay/3)
+		#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+		#debug_buffer.pr(True,0, datetime.now())
 		#print("config.dbug :",config.dbug)
-		#debug_bffr.line_values[0] = "Turn Off Time " + str(round(smartplug.turn_off_time_taken/1000000,4)) + "secs"
-		#debug_bffr.line_values[1] = "Turn On Time " +  str(round(smartplug.turn_on_time_taken/1000000,4)) + "secs"
-		#debug_bffr.line_values[2] = "Read " + str(round(smartplug.do_read_time_taken/1000000,4)) + "secs  " + \
+		#debug_buffer.line_values[0] = "Turn Off Time " + str(round(smartplug.turn_off_time_taken/1000000,4)) + "secs"
+		#debug_buffer.line_values[1] = "Turn On Time " +  str(round(smartplug.turn_on_time_taken/1000000,4)) + "secs"
+		#debug_buffer.line_values[2] = "Read " + str(round(smartplug.do_read_time_taken/1000000,4)) + "secs  " + \
 		#					   "Info " + str(round(smartplug.do_info_time_taken/1000000,4)) + "secs"
-		#debug_bffr.pr(True,0, datetime.now())
+		#refresh_time = config.scan_delay + (config.scan_delay/3)
+		#example_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
+		#debug_buffer.pr(True,0, datetime.now())
 		
 		#reset change flag and operate delay before next scan
 		change_flag = False

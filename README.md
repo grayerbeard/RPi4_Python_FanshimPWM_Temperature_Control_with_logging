@@ -18,6 +18,7 @@ following items are not yet developed to working versions
 * cpu_temp_log.py
 * cpu_monitor_config.py
 * cpu_monitor_config.cfg
+* cpu.py
 * my_sensors.py
 * schedule.py
 * sensor_data.csv

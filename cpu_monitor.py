@@ -52,7 +52,6 @@ try:
 except:
 	print("Cannot copy old files")
 
-config.config_filename = config.prog_name + "_config_" + ".cfg"
 #config.set_filename(config.config_filename)
 
 print("Program Name is : ",config.prog_name)
@@ -109,6 +108,7 @@ loop_time = 0
 correction = 4.02
 
 print("FTP Cred File is: ",config.ftp_creds_filename)
+print("Config filename: ",config.config_filename)
 sys_exit()
 
 
@@ -237,6 +237,6 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		#print("Error : ",1000*(last_total - 5),correction)
 	except KeyboardInterrupt:
 		print(".........Ctrl+C pressed...")
-
+		sys_exit()
 
 	

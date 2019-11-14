@@ -82,11 +82,10 @@ class class_config:
 		# First three use the program pathname	
 		self.prog_path = path.dirname(path.realpath(__file__)) + "/"
 		self.prog_name = str(sys_argv[0][:-3])
-		self.config_filename = self.prog_name + ".cfg"
-		self.config_filename = self.prog_name + ".cfg"
+		self.config_filename = self.prog_name + "_config.cfg"
 		
 		#  was self.sensor_info_filename = ""  august 9th 2018
-		self.s_filename = "" # Set later based on "config.sensor_config_filename" and program path
+		#self.s_filename = "" # Set later based on "config.sensor_config_filename" and program path
 
 
 		self.html_filename = ""

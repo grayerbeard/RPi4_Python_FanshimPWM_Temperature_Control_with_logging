@@ -74,7 +74,7 @@ class class_config:
 		#self.target_integral = float(0.05) # rate of change of offset		    
 		#self.one_heater_select = 1
 		#self.percent_full_power = 100
-		self.watchdog_time = 200
+		#self.watchdog_time = 200
 		self.ftp_timeout = 10
 
 		
@@ -173,7 +173,7 @@ class class_config:
 		#self.target_integral = float(config_read.get('SetUp', 'target_integral'))
 		#self.one_heater_select = float(config_read.get('SetUp', 'one_heater_select'))
 		#self.percent_full_power = float(config_read.get('SetUp', 'percent_full_power'))
-		self.watchdog_time = float(config_read.get('SetUp', 'watchdog_time'))
+		#self.watchdog_time = float(config_read.get('SetUp', 'watchdog_time'))
 		self.ftp_timeout =  float(config_read.get('SetUp', 'ftp_timeout'))
 		return
 

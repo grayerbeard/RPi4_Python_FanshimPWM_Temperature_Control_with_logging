@@ -23,8 +23,8 @@ import plasma
 # Third party imports
 # None
 # Local application imports
-from config import class_config
-from text_bffr import class_text_bffr
+from cpu_monitor_config import class_config
+from text_bffer import class_text_bffer
 from cpu import class_cpu
 from utility import fileexists,pr,make_time_text
 from wd import class_wd
@@ -40,23 +40,23 @@ config.prog_name = str(sys_argv[0][:-3])
 init_printout = ["My PID is : " + str(my_pid)]
 
 config.prog_name = str(sys_argv[0][:-3])
-prg_version = config.prog_name[-3:]
+#prg_version = config.prog_name[-3:]
 
 # make a random number string  between 1 and a thousand
 random_text_number = str(random_randint(1,1001))
 
 try:
 	print("start copy using: ", random_text_number)
-	copyfile("cpu_log.html", "old/" + prg_version + "cpu_log" + random_text_number + ".html")
+	copyfile("cpu_log.html", "old/" + "cpu_log" + random_text_number + ".html")
 	print("finish copy")
 except:
 	print("Cannot copy old files")
 
-config.config_filename = "config_" + prg_version + ".cfg"
-config.set_filename(config.config_filename)
+config.config_filename = config.prog_name + "_config_" + prg_version + ".cfg"
+#config.set_filename(config.config_filename)
 
 print("Program Name is : ",config.prog_name)
-print("So Version taken as : ",prg_version)
+#print("So Version taken as : ",prg_version)
 print("config file is : ",config.config_filename)
 
 if fileexists(config.config_filename):		

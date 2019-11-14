@@ -45,7 +45,7 @@ class class_config:
 	def __init__(self):
 		self.__c_filename = "" # must be set
 		self.scan_delay = 1.1		# delay in seconds between each scan (not incl sensor responce times)
-		self.max_scans = 3			# number of scans to do, set to zero to scan for ever (until type "ctrl C")
+		self.max_scans = 3.11			# number of scans to do, set to zero to scan for ever (until type "ctrl C")
 									# by setting this to 3 ensures program stops after few scans id a new config file was made.
 		self.log_directory = "log/"		# where to send log files both temp control and processor temp logging
 		self.local_dir_www = "/var/www/html/" # default value for local folder
@@ -145,7 +145,7 @@ class class_config:
 		config_read = RawConfigParser()
 		config_read.read(self.config_filename)
 		self.scan_delay = float(config_read.get('SetUp', 'scan_delay')) 
-		self.max_scans = int(config_read.get('SetUp', 'max_scans'))
+		self.max_scans = float(config_read.get('SetUp', 'max_scans'))
 		self.log_directory = config_read.get('SetUp', 'log_directory')
 		self.local_dir_www = config_read.get('SetUp', 'local_dir_www')
 		#self.sensor_config_filename = config_read.get('SetUp','sensor_config_filename')

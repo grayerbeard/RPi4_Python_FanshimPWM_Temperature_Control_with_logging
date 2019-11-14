@@ -24,7 +24,7 @@ import plasma
 # None
 # Local application imports
 from cpu_monitor_config import class_config
-from text_bffer import class_text_bffer
+from text_buffer import class_text_buffer
 from cpu import class_cpu
 from utility import fileexists,pr,make_time_text
 from wd import class_wd

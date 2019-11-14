@@ -107,9 +107,9 @@ last_total = 0
 loop_time = 0
 correction = 4.02
 
-print("FTP Cred File is: ",config.ftp_creds_filename)
-print("Config filename: ",config.config_filename)
-sys_exit()
+#print("FTP Cred File is: ",config.ftp_creds_filename)
+#print("Config filename: ",config.config_filename)
+#sys_exit()
 
 
 

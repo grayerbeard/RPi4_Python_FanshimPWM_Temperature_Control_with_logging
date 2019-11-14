@@ -112,30 +112,30 @@ class class_config:
 		self.temp_ftplog_count = 0
 		self.last_ftplog = 0
 		self.ref_sensor_index = 0
-		self.heater1_on = 0
-		self.heater2_on = 0
-		self.one_first = 1
-		self.last_target = 0
-		self.last_target_full_power = 0
-		self.number_seen = 0
+		#self.heater1_on = 0
+		#self.heater2_on = 0
+		#self.one_first = 1
+		#self.last_target = 0
+		#self.last_target_full_power = 0
+		#self.number_seen = 0
 		#
 		#Flags
-		self.underfloor = False
+		#self.underfloor = False
 		self.dbug = False # set True by option -d
-		self.dbug_w1 = False
+		#self.dbug_w1 = False
 		self.dbug_ftp = False
 		self.exit_flag = False
 		self.new_config_wanted = False
-		self.new_sensor_file_wanted = False
-		self.sauna = False # sauna mode
-		self.use_schedule = True
+		#self.new_sensor_file_wanted = False
+		#self.sauna = False # sauna mode
+		#self.use_schedule = True
 
 		#sauna control parameters
-		self.sauna_on = 0.0
-		self.target_offset = - 1.1
-		self.detect_off_count = 0
-		self.reached_target = False
-		self.my_module_name = __name__
+		#self.sauna_on = 0.0
+		#self.target_offset = - 1.1
+		#self.detect_off_count = 0
+		#self.reached_target = False
+		#self.my_module_name = __name__
 		#self.prog_name = "not_set"
 
 	#def set_filename(self,c_filename):
@@ -151,28 +151,28 @@ class class_config:
 		self.local_dir_www = config_read.get('SetUp', 'local_dir_www')
 		self.sensor_config_filename = config_read.get('SetUp','sensor_config_filename')
 		self.ftp_creds_filename = config_read.get('SetUp', 'ftp_creds_filename') 
-		self.delay_limit = float(config_read.get('SetUp', 'delay_limit'))
-		self.delay_increment = float(config_read.get('SetUp', 'delay_increment'))
+		#self.delay_limit = float(config_read.get('SetUp', 'delay_limit'))
+		#self.delay_increment = float(config_read.get('SetUp', 'delay_increment'))
 		self.ftp_log_max_count = float(config_read.get('SetUp', 'ftp_log_max_count'))
-		self.heaterIP0 = config_read.get('SetUp', 'heaterIP0')
-		self.heaterIP0_power_scale = float(config_read.get('SetUp', 'heaterIP0_power_scale'))
-		self.heaterIP1 = config_read.get('SetUp', 'heaterIP1')
-		self.heaterIP1_power_scale = float(config_read.get('SetUp', 'heaterIP1_power_scale'))
-		self.heaterIP2 = config_read.get('SetUp', 'heaterIP2')
-		self.heaterIP2_power_scale = float(config_read.get('SetUp', 'heaterIP2_power_scale'))
-		self.heaterIP3 = config_read.get('SetUp', 'heaterIP3')
-		self.heaterIP3_power_scale = float(config_read.get('SetUp', 'heaterIP3_power_scale'))
-		self.sensor4readingmy_s5ensors = config_read.get('SetUp', 'sensor4readings')
-		self.change4log = float(config_read.get('SetUp', 'change4log'))
-		self.control_hysteresis = float(config_read.get('SetUp', 'control_hysteresis'))
-		self.default_target = float(config_read.get('SetUp', 'default_target'))
-		self.default_target_full_power = float(config_read.get('SetUp', 'default_target_full_power'))
-		self.max_target = float(config_read.get('SetUp', 'max_target'))
-		self.min_target = float(config_read.get('SetUp', 'min_target'))
-		self.precision = float(config_read.get('SetUp', 'precision'))
-		self.target_integral = float(config_read.get('SetUp', 'target_integral'))
-		self.one_heater_select = float(config_read.get('SetUp', 'one_heater_select'))
-		self.percent_full_power = float(config_read.get('SetUp', 'percent_full_power'))
+		#self.heaterIP0 = config_read.get('SetUp', 'heaterIP0')
+		#self.heaterIP0_power_scale = float(config_read.get('SetUp', 'heaterIP0_power_scale'))
+		#self.heaterIP1 = config_read.get('SetUp', 'heaterIP1')
+		#self.heaterIP1_power_scale = float(config_read.get('SetUp', 'heaterIP1_power_scale'))
+		#self.heaterIP2 = config_read.get('SetUp', 'heaterIP2')
+		#self.heaterIP2_power_scale = float(config_read.get('SetUp', 'heaterIP2_power_scale'))
+		#self.heaterIP3 = config_read.get('SetUp', 'heaterIP3')
+		#self.heaterIP3_power_scale = float(config_read.get('SetUp', 'heaterIP3_power_scale'))
+		#self.sensor4readingmy_s5ensors = config_read.get('SetUp', 'sensor4readings')
+		#self.change4log = float(config_read.get('SetUp', 'change4log'))
+		#self.control_hysteresis = float(config_read.get('SetUp', 'control_hysteresis'))
+		#self.default_target = float(config_read.get('SetUp', 'default_target'))
+		#self.default_target_full_power = float(config_read.get('SetUp', 'default_target_full_power'))
+		#self.max_target = float(config_read.get('SetUp', 'max_target'))
+		#self.min_target = float(config_read.get('SetUp', 'min_target'))
+		#self.precision = float(config_read.get('SetUp', 'precision'))
+		#self.target_integral = float(config_read.get('SetUp', 'target_integral'))
+		#self.one_heater_select = float(config_read.get('SetUp', 'one_heater_select'))
+		#self.percent_full_power = float(config_read.get('SetUp', 'percent_full_power'))
 		self.watchdog_time = float(config_read.get('SetUp', 'watchdog_time'))
 		self.ftp_timeout =  float(config_read.get('SetUp', 'ftp_timeout'))
 		return
@@ -185,31 +185,31 @@ class class_config:
 		config_write.set('SetUp', 'max_scans',self.max_scans)
 		config_write.set('SetUp', 'log_directory',self.log_directory)
 		config_write.set('SetUp', 'local_dir_www',self.local_dir_www)
-		config_write.set('SetUp', 'sensor_config_filename',self.sensor_config_filename)
+		#config_write.set('SetUp', 'sensor_config_filename',self.sensor_config_filename)
 		config_write.set('SetUp', 'ftp_creds_filename',self.ftp_creds_filename)
-		config_write.set('SetUp', 'delay_limit',self.delay_limit)
-		config_write.set('SetUp', 'delay_increment',self.delay_increment)
+		#config_write.set('SetUp', 'delay_limit',self.delay_limit)
+		#config_write.set('SetUp', 'delay_increment',self.delay_increment)
 		config_write.set('SetUp', 'ftp_log_max_count',self.ftp_log_max_count)
-		config_write.set('SetUp', 'heaterIP0',self.heaterIP0)
-		config_write.set('SetUp', 'heaterIP0_power_scale',self.heaterIP0_power_scale)
-		config_write.set('SetUp', 'heaterIP1',self.heaterIP1)
-		config_write.set('SetUp', 'heaterIP1_power_scale',self.heaterIP1_power_scale)
-		config_write.set('SetUp', 'heaterIP2',self.heaterIP2)
-		config_write.set('SetUp', 'heaterIP2_power_scale',self.heaterIP2_power_scale)
-		config_write.set('SetUp', 'heaterIP3',self.heaterIP3)
-		config_write.set('SetUp', 'heaterIP3_power_scale',self.heaterIP3_power_scale)
-		config_write.set('SetUp', 'sensor4readings',self.sensor4readings)
+		#config_write.set('SetUp', 'heaterIP0',self.heaterIP0)
+		#config_write.set('SetUp', 'heaterIP0_power_scale',self.heaterIP0_power_scale)
+		#config_write.set('SetUp', 'heaterIP1',self.heaterIP1)
+		#config_write.set('SetUp', 'heaterIP1_power_scale',self.heaterIP1_power_scale)
+		#config_write.set('SetUp', 'heaterIP2',self.heaterIP2)
+		#config_write.set('SetUp', 'heaterIP2_power_scale',self.heaterIP2_power_scale)
+		#config_write.set('SetUp', 'heaterIP3',self.heaterIP3)
+		#config_write.set('SetUp', 'heaterIP3_power_scale',self.heaterIP3_power_scale)
+		#config_write.set('SetUp', 'sensor4readings',self.sensor4readings)
 		config_write.set('SetUp', 'change4log',self.change4log)
-		config_write.set('SetUp', 'control_hysteresis',self.control_hysteresis)
-		config_write.set('SetUp', 'default_target',self.default_target)
-		config_write.set('SetUp', 'default_target_full_power',self.default_target_full_power)
-		config_write.set('SetUp', 'max_target',self.max_target)
-		config_write.set('SetUp', 'min_target',self.min_target)
-		config_write.set('SetUp', 'precision',self.precision)
-		config_write.set('SetUp', 'target_integral',self.target_integral)
-		config_write.set('SetUp', 'one_heater_select',self.one_heater_select)
-		config_write.set('SetUp', 'percent_full_power',self.percent_full_power)
-		config_write.set('SetUp', 'watchdog_time',self.percent_full_power)
+		#config_write.set('SetUp', 'control_hysteresis',self.control_hysteresis)
+		#config_write.set('SetUp', 'default_target',self.default_target)
+		#config_write.set('SetUp', 'default_target_full_power',self.default_target_full_power)
+		#config_write.set('SetUp', 'max_target',self.max_target)
+		#config_write.set('SetUp', 'min_target',self.min_target)
+		#config_write.set('SetUp', 'precision',self.precision)
+		#config_write.set('SetUp', 'target_integral',self.target_integral)
+		#config_write.set('SetUp', 'one_heater_select',self.one_heater_select)
+		#config_write.set('SetUp', 'percent_full_power',self.percent_full_power)
+		#config_write.set('SetUp', 'watchdog_time',self.percent_full_power)
 		config_write.set('SetUp', 'ftp_timeout',self.percent_full_power)
 		# Writing our configuration file to 'self.config_filename'
 		pr(self.dbug, here, "ready to write new config file withdefault values: " , self.config_filename)

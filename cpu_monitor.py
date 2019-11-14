@@ -52,7 +52,7 @@ try:
 except:
 	print("Cannot copy old files")
 
-config.config_filename = config.prog_name + "_config_" + prg_version + ".cfg"
+config.config_filename = config.prog_name + "_config_" + ".cfg"
 #config.set_filename(config.config_filename)
 
 print("Program Name is : ",config.prog_name)

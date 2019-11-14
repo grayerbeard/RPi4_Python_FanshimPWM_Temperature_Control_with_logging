@@ -31,6 +31,8 @@ from csv import DictWriter as csv_DictWriter
 #from sys import argv as sys_argv
 #from sys import exit as sys_exit
 #import socket
+from os import path
+from sys import argv as sys_argv
 
 # Third party imports
 #from w1thermsensor import W1ThermSensor
@@ -77,10 +79,10 @@ class class_config:
 
 		
 		# These parameters are not saved to the config file
-		# First three use the program pathname
+		# First three use the program pathname	
 		self.prog_path = path.dirname(path.realpath(__file__)) + "/"
 		self.prog_name = str(sys_argv[0][:-3])
-		#self.config_filename = ""
+		self.config_filename = self.prog_name + ".cfg"
 		self.config_filename = self.prog_name + ".cfg"
 		
 		#  was self.sensor_info_filename = ""  august 9th 2018

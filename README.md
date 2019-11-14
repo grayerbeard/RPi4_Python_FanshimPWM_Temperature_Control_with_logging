@@ -12,15 +12,19 @@ following items in this repository are working OK
 * utility.py
 
 following items are not yet developed to working versions
-* config.py
-* config.cfg
+* config.py old version for reference
+* config.cfg old version for reference
 * cpu_monitor.py
 * cpu_temp_log.py
+* cpu_monitor_config.py
+* cpu_monitor_config.cfg
 * my_sensors.py
 * schedule.py
 * sensor_data.csv
 * smartplug.py
 * temp_control.py
+* temp_control_config.py
+* temp_control_config.cfg
 * watch_dog.py
 
 following are provided as a template needing edit to work on a system

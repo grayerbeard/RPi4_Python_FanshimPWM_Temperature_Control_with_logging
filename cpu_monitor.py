@@ -69,12 +69,12 @@ else : # no file so my_sensorneeds to be written
 
 config.scan_count = 0
 
-cpu_bffr_width = 11
+cpu_buffer_width = 11
 
 headings = ["Count","Cpu Load","Temp","Throttle","Fan Speed","Cpu Freq","Cpu Mem","Cpu Disk","Times","Msg"]
-cpu_log_bffr_flag = True
-cpu_bffr = class_text_bffr(200,headings,"cpu",config,cpu_log_bffr_flag)
-cpu_bffr_values = [""] * (cpu_bffr_width-1)
+cpu_log_buffer_flag = True
+cpu_buffer = class_text_buffer(200,headings,"cpu",config,cpu_log_buffer_flag)
+cpu_buffer_values = [""] * (cpu_buffer_width-1)
 
 
 #Fan shim related
@@ -160,18 +160,18 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 
 		cpu.update_led_temperature(cpu.temp,max_temp,min_temp,brightness)
 
-		cpu_bffr.line_values[0] = str(round(config.scan_count + check,3))
-		cpu_bffr.line_values[1] = str(cpu.average_load) + "%"
-		cpu_bffr.line_values[2] = str(round(cpu.temp,2) ) + "C"
-		cpu_bffr.line_values[3] = str(round(throttle,1))+ "%"
-		cpu_bffr.line_values[4] = str(round(speed,1))+ "%"
-		cpu_bffr.line_values[5] = str(cpu.cpu_freq.current/1000) + "GHz"
-		cpu_bffr.line_values[6] = str(cpu.cpu_mem) + "%"
-		cpu_bffr.line_values[7] = str(cpu.cpu_disk) + "%"
-		cpu_bffr.line_values[8] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
-		cpu_bffr.line_values[9] = str(int(c_or_1)) + str(int(c_or_2)) + str(int(c_or_3)) + str(int(c_or_4))
+		cpu_buffer.line_values[0] = str(round(config.scan_count + check,3))
+		cpu_buffer.line_values[1] = str(cpu.average_load) + "%"
+		cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
+		cpu_buffer.line_values[3] = str(round(throttle,1))+ "%"
+		cpu_buffer.line_values[4] = str(round(speed,1))+ "%"
+		cpu_buffer.line_values[5] = str(cpu.cpu_freq.current/1000) + "GHz"
+		cpu_buffer.line_values[6] = str(cpu.cpu_mem) + "%"
+		cpu_buffer.line_values[7] = str(cpu.cpu_disk) + "%"
+		cpu_buffer.line_values[8] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
+		cpu_buffer.line_values[9] = str(int(c_or_1)) + str(int(c_or_2)) + str(int(c_or_3)) + str(int(c_or_4))
 
-		cpu_bffr.pr(buffer_increment_flag,0,loop_start_time)
+		cpu_buffer.pr(buffer_increment_flag,0,loop_start_time)
 
 		config.scan_count += 1
 		check = 0
@@ -180,23 +180,23 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		#Uncomment following Two lines to observe if curious
 		#print(" Count : ",round(config.scan_count+check,2),cpu.get_av_cpu_load_so_far(),"Temp : ",
 		#	round(cpu.temp,2),"Throttle/smoothed : ",round(try_throttle_calc,2),"/",round(try_throttle_calc_smoothed,2)) 
-		cpu_bffr.line_values[0] = str(round(config.scan_count + check,3))
+		cpu_buffer.line_values[0] = str(round(config.scan_count + check,3))
 		
 		if buffer_increment_flag:
-			cpu_bffr.line_values[1] = str(cpu.average_load) + "%"
-			cpu_bffr.line_values[2] = str(round(cpu.temp,2) ) + "C"
-			cpu_bffr.line_values[3] = str(round(throttle,1))+ "%"
+			cpu_buffer.line_values[1] = str(cpu.average_load) + "%"
+			cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
+			cpu_buffer.line_values[3] = str(round(throttle,1))+ "%"
 		else:
-			cpu_bffr.line_values[1] = str(cpu.cpu_load) + "%"
-			cpu_bffr.line_values[2] = str(round(cpu.temp,2) ) + "C"
-			cpu_bffr.line_values[3] = str(round(try_throttle_calc,1))+ "%"
-		cpu_bffr.line_values[4] = str(round(speed,1))+ "%"
-		cpu_bffr.line_values[5] = str(cpu.cpu_freq.current/1000) + "GHz"
-		cpu_bffr.line_values[6] = str(cpu.cpu_mem) + "%"
-		cpu_bffr.line_values[7] = str(cpu.cpu_disk) + "%"
-		cpu_bffr.line_values[8] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
-		cpu_bffr.line_values[9] = "NoFlag"
-		cpu_bffr.pr(buffer_increment_flag,0,loop_start_time)
+			cpu_buffer.line_values[1] = str(cpu.cpu_load) + "%"
+			cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
+			cpu_buffer.line_values[3] = str(round(try_throttle_calc,1))+ "%"
+		cpu_buffer.line_values[4] = str(round(speed,1))+ "%"
+		cpu_buffer.line_values[5] = str(cpu.cpu_freq.current/1000) + "GHz"
+		cpu_buffer.line_values[6] = str(cpu.cpu_mem) + "%"
+		cpu_buffer.line_values[7] = str(cpu.cpu_disk) + "%"
+		cpu_buffer.line_values[8] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
+		cpu_buffer.line_values[9] = "NoFlag"
+		cpu_buffer.pr(buffer_increment_flag,0,loop_start_time)
 		if throttle == 0:
 			buffer_increment_flag = False
 	cpu.control_fan()

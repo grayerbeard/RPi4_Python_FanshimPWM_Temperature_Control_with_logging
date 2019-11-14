@@ -2,23 +2,31 @@
 R Pi 4 with Fanshim Cooling controlled with PWM, temperature control suitable for smartplugs or SCR with PWM and with temperature logging and remote monitoring.  All separate funtions split among classes.
 
 following items in this repository are working OK
+
++Common Use classes
+- utility.py
 * buffer_log.py
-* test_text_buffer.cfg
-* test_text_buffer.py
 * text_buffer.py
-* text_buffer_config.py
 * tmux_start.sh
 * tmux_stop.sh
-* utility.py
+
+Test the text buffer
+* test_text_buffer.cfg
+* test_text_buffer.py
+
+Fanshim PWM Speed Control
+* cpu_monitor.py
+* cpu_monitor_config.py
+* cpu_monitor_config.cfg
+* cpu.py
 
 following items are not yet developed to working versions
 * config.py old version for reference
 * config.cfg old version for reference
-* cpu_monitor.py
-* cpu_temp_log.py
-* cpu_monitor_config.py
-* cpu_monitor_config.cfg
-* cpu.py
+* cpu_temp_log.py old version for reference
+
+
+
 * my_sensors.py
 * schedule.py
 * sensor_data.csv

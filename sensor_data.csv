@@ -1,6 +1,0 @@
-number,code,location,stype,comment
-n01,0315a80584ff,Air-In,Txx,Ccc
-n02,0316062c0fff,Floor,Txx,Ccc
-n03,0316064402ff,Wall-In,Txx,Ccc
-n04,03160647b5ff,Wall-Out,Txx,Ccc
-n05,0115a869c1ff,Air-Out,Txx,Ccc

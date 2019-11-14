@@ -145,8 +145,8 @@ class class_config:
 		here = "config.read_file"
 		config_read = RawConfigParser()
 		config_read.read(self.config_filename)
-		self.scan_delay = float(config_read.getint('SetUp', 'scan_delay')) 
-		self.max_scans = int(config_read.getint('SetUp', 'max_scans'))
+		self.scan_delay = float(config_read.get('SetUp', 'scan_delay')) 
+		self.max_scans = int(config_read.get('SetUp', 'max_scans'))
 		self.log_directory = config_read.get('SetUp', 'log_directory')
 		self.local_dir_www = config_read.get('SetUp', 'local_dir_www')
 		self.sensor_config_filename = config_read.get('SetUp','sensor_config_filename')

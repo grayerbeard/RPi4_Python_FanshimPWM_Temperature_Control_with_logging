@@ -201,7 +201,10 @@ class class_text_buffer(object):
 		copyfile(self.__html_filename, self.__www_filename)
 		
 		# To debug FTP change end of following line to " = True"
-		FTP_dbug_flag = False
+		
+		FTP_dbug_flag = True
+		print("############ sending by FTP dbug on")
+		
 		ftp_result = send_by_ftp(FTP_dbug_flag,self.__ftp_creds, self.__html_filename_save_as, self.__html_filename,"",self.__config.ftp_timeout)
 		for pres_ind in range(0,len(ftp_result)):
 			pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])

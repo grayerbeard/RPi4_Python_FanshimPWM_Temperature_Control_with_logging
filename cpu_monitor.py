@@ -30,34 +30,12 @@ from utility import fileexists,pr,make_time_text
 from wd import class_wd
 
 cpu = class_cpu()
-#pwm = c
-config = class_config()
 wd = class_wd("cpu_wd")
 my_pid = getpid()
-config.prog_path = path.dirname(path.realpath(__file__)) + "/"
-config.prog_name = str(sys_argv[0][:-3])
-
 init_printout = ["My PID is : " + str(my_pid)]
 
-config.prog_name = str(sys_argv[0][:-3])
-#prg_version = config.prog_name[-3:]
-
-# make a random number string  between 1 and a thousand
-random_text_number = str(random_randint(1,1001))
-
-try:
-	print("start copy using: ", random_text_number)
-	copyfile("cpu_log.html", "old/" + "cpu_log" + random_text_number + ".html")
-	print("finish copy")
-except:
-	print("Cannot copy old files")
-
-#config.set_filename(config.config_filename)
-
-print("Program Name is : ",config.prog_name)
-#print("So Version taken as : ",prg_version)
-print("config file is : ",config.config_filename)
-
+#Set up Config file and read it in if present
+config = class_config()
 if fileexists(config.config_filename):		
 	init_printout.append("Config taken from file")
 	print( "will try to read Config File : " ,config.config_filename)
@@ -65,6 +43,17 @@ if fileexists(config.config_filename):
 else : # no file so my_sensorneeds to be written
 	config.write_file()
 	init_printout.append("New Config File Made with default values, you probably need to edit it")
+	
+# make a random number string  between 1 and a thousand use to copy html files
+random_text_number = str(random_randint(1,1001))
+try:
+	print("start copy using: ", random_text_number)
+			config.status_html_filename = ""
+		config.log_html_filename
+	copyfile("cpu_log.html", "old/" + "cpu_log" + random_text_number + ".html")
+	print("finish copy")
+except:
+	print("Cannot copy old files")
 
 config.scan_count = 0
 
@@ -72,7 +61,7 @@ cpu_buffer_width = 11
 
 headings = ["Count","Cpu Load","Temp","Throttle","Fan Speed","Cpu Freq","Cpu Mem","Cpu Disk","Times","Msg"]
 cpu_log_buffer_flag = True
-cpu_buffer = class_text_buffer(50,headings,"cpu",config,cpu_log_buffer_flag)
+cpu_buffer = class_text_buffer(50,headings,config.prog_name,config,cpu_log_buffer_flag)
 cpu_buffer_values = [""] * (cpu_buffer_width-1)
 
 

@@ -37,14 +37,15 @@ class class_text_buffer(object):
 	# Rotating Buffer Class
 	# Initiate with just the size required Parameter
 	# Get data with just a position in buffer Parameter
-	def __init__(self, size_max, headings,name,config,log_buffer_flag):
+	def __init__(self, size_max, headings,config,log_buffer_flag):
 		#initialization
-		print(" Buffer Init for : ",name," with a size of : ",size_max, " and  width of : ", len(headings) + 1, " including time stamp")
+		self.__config = config
+		print(" Buffer Init for : ",self.__config.prog_name," with a size of : ",size_max, " and  width of : ", len(headings) + 1, " including time stamp")
 		if not os.path.exists('log'):
 		    os.makedirs('log')
+
 		self.__source_ref = 0 # a number used to control prevention repeat messages
 		self.__size_max = size_max
-		self.__name = name # used for debugging which bugger instance in use
 		self.__width = len(headings) + 1                     
 		self.line_values = ["1"]*len(headings)
 		self.__dta = [ [ None for di in range(self.__width+1) ] for dj in range(self.__size_max+1) ]
@@ -59,18 +60,14 @@ class class_text_buffer(object):
 			self.__headings.append(headings[hdg_ind])
 		#print(self.__headings)
 		self.__pr_values = ["text"] * self.__width
-		self.__config = config
-		self.__html_filename = name + "_log.html"
+
+		self.__html_filename = config.prog_name + "_log.html"
 		self.__html_filename_save_as = config.prog_path + self.__html_filename
 		self.__www_filename = config.local_dir_www +  self.__html_filename  
 		self.__ftp_creds = config.ftp_creds_filename
-		if log_buffer_flag:
-			self.__log_buffer_flag = True
+		if self.__config.log_buffer_flag:
 			self.__send_log_count = 0
-			self.__log = class_buffer_log(name,config)
-		else:
-			self.__log_buffer_flag = False
-
+			self.__log = class_buffer_log(config)
 		
 	def size(self):
 		return self.__size_max
@@ -93,13 +90,13 @@ class class_text_buffer(object):
 		else:
 			self.__source_ref = ref		
 		if len(values) > self.__width :
-			print("Width Error for :",self.__name, len(values) , self.__width, values)
+			print("Width Error for :",self.__config.prog_name, len(values) , self.__width, values)
 			sys.exit()
 		for i in range(0,len(values)):
 			self.__dta[self.__posn][i] = values[i]
 
 		#print("Buffer updated and log buffer flag is : ",self.__log_buffer_flag)
-		if self.__log_buffer_flag:
+		if self.__config.log_buffer_flag:
 			self.__log.log_to_file(self.__headings,values)
 			self.__log.copy_log_to_www(False)
 			#send log file to website configevery ten scans
@@ -141,7 +138,7 @@ class class_text_buffer(object):
 		return(all_data)
 
 	def pr(self,appnd,ref,log_time,refresh_interval):
-		here = "buffer.pr for " + self.__name
+		here = "buffer.pr for " + self.__config.prog_name
 		make_values = [" -- "]*self.__width
 		prtime = datetime.now()
 		for_screen = log_time.strftime('%d/%m/%Y %H:%M:%S')
@@ -171,16 +168,16 @@ class class_text_buffer(object):
 				make_values[i+1] = str(self.line_values[i])
 				for_screen = for_screen + " " + str(self.line_values[i])
 		except:
-			print("Error in make values in ...buffer.pr for : ",self.__name)
+			print("Error in make values in ...buffer.pr for : ",self.__config.prog_name)
 			print("i,values,len(self.line_value>s),self.__width",i,self.line_values,len(self.line_values),self.__width)
 			sys_exit()
 				
 		# print to screen and to status log and update html file
 		
 		if appnd:
-			print("    appending : " + self.__name + " : " + for_screen)
+			print("    appending : " + self.__config.prog_name + " : " + for_screen)
 		else:
-			print("not appending : " + self.__name + " : " + for_screen)
+			print("not appending : " + self.__config.prog_name + " : " + for_screen)
 
 		self.update_buffer(make_values,appnd,ref)
 		with open(self.__html_filename,'w') as htmlfile:

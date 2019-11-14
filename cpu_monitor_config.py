@@ -42,18 +42,17 @@ from utility import pr,make_time_text,send_by_ftp
 
 
 class class_config:
-	def __init__(self):
-		self.__c_filename = "" # must be set
+	def __init__(self,ftp_creds_filename,local_dir_www,log_directory,ftp_log_max_count,ftp_timeout):
 		self.scan_delay = 1.1		# delay in seconds between each scan (not incl sensor responce times)
 		self.max_scans = 3.11			# number of scans to do, set to zero to scan for ever (until type "ctrl C")
 									# by setting this to 3 ensures program stops after few scans id a new config file was made.
-		self.log_directory = "log/"		# where to send log files both temp control and processor temp logging
-		self.local_dir_www = "/var/www/html/" # default value for local folder
+		self.log_directory = log_directory	# where to send log files both temp control and processor temp logging
+		self.local_dir_www = local_dir_www # default value for local folder
 		#self.sensor_config_filename = "sensor_data.csv"
-		self.ftp_creds_filename = 'ftp_creds.csv'	# 
-		self.delay_limit = 2		# Number of Seconds delay between temperature scans
-		self.delay_increment =  2		# Number of scans to do, Zero for only stopped by Ctrl C on Keyboard
-		self.ftp_log_max_count = 5  # max scans before sending data to log file
+		self.ftp_creds_filename = ftp_creds_filename	# 
+		#self.delay_limit = 2		# Number of Seconds delay between temperature scans
+		#self.delay_increment =  2		# Number of scans to do, Zero for only stopped by Ctrl C on Keyboard
+		self.ftp_log_max_count = ftp_log_max_count  # max scans before sending data to log file
 		self.ftplog = 0		# Number of Value Changes before Log File is Saved to remote website, 0 means every change
 		#self.heaterIP0 = "0"		# IP for First Heater, zero value indicates not using smart plugs
 		#self.heaterIP0_power_scale = 1.0 # newer smartplugs have 1000 x scaling for power info (so scaling needed is 0.001)
@@ -75,7 +74,7 @@ class class_config:
 		#self.one_heater_select = 1
 		#self.percent_full_power = 100
 		#self.watchdog_time = 200
-		self.ftp_timeout = 10
+		self.ftp_timeout = ftp_timeout
 
 		
 		# These parameters are not saved to the config file
@@ -83,6 +82,8 @@ class class_config:
 		self.prog_path = path.dirname(path.realpath(__file__)) + "/"
 		self.prog_name = str(sys_argv[0][:-3])
 		self.config_filename = self.prog_name + "_config.cfg"
+		print("Program Name is : ",self.prog_name)
+		print("config file is : ",self.config_filename)
 		
 		#  was self.sensor_info_filename = ""  august 9th 2018
 		#self.s_filename = "" # Set later based on "config.sensor_config_filename" and program path
@@ -136,9 +137,6 @@ class class_config:
 		#self.reached_target = False
 		#self.my_module_name = __name__
 		#self.prog_name = "not_set"
-
-	#def set_filename(self,c_filename):
-	#	self.__c_filename =  c_filename
 
 	def read_file(self):
 		here = "config.read_file"

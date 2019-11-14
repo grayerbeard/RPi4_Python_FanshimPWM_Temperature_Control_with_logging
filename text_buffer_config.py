@@ -54,6 +54,7 @@ class class_config:
 		self.ftp_log_max_count = ftp_log_max_count  # max scans before sending data to log file
 		self.ftplog = 0		# Number of Value Changes before Log File is Saved to remote website, 0 means every change
 		self.ftp_timeout = ftp_timeout
+		self.log_buffer_flag = True
 
 		# These parameters are not saved to the config file
 		# First three use the program pathname
@@ -90,6 +91,18 @@ class class_config:
 		self.ftp_creds_filename = config_read.get('SetUp', 'ftp_creds_filename') 
 		self.ftp_log_max_count = float(config_read.get('SetUp', 'ftp_log_max_count'))
 		self.ftp_timeout =  float(config_read.get('SetUp', 'ftp_timeout'))
+		self.log_buffer_flag =  config_read.getboolean('SetUp', 'log_buffer_flag')
+		self.a_flag =  config_read.getboolean('SetUp', 'a_flag')
+		self.b_flag =  config_read.getboolean('SetUp', 'b_flag')
+		self.c_flag =  config_read.getboolean('SetUp', 'c_flag')
+		self.d_flag =  config_read.getboolean('SetUp', 'd_flag')
+		self.e_flag =  config_read.getboolean('SetUp', 'e_flag')
+		print("log_buffer_flag = True",log_buffer_flag)
+		print("a_flag = False",self.a_flag)
+		print("b_flag = 1",self.b_flag)
+		print("b_flag = 0",self.c_flag)
+		print("c_flag = Yes",self.d_flag)
+		print("d_flag = no",self.e_flag)
 		return
 
 	def write_file(self):

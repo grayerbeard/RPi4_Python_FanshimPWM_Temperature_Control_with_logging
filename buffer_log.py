@@ -39,7 +39,7 @@ import socket
 from utility import pr,make_time_text,send_by_ftp
 
 class class_buffer_log:
-	def __init__(self,name,config):
+	def __init__(self,config):
 		self.dbug = False
 		#self.__log_filename =  "not set"
 		#self.__log_filename_save_as = "not_set"
@@ -47,14 +47,14 @@ class class_buffer_log:
 		#self.__ftp_creds =  "not set"
 		self.__send_plain_count = 5
 		self.__no_heading_yet = True
-		self.__name = name
+		self.__config = config
 		starttime = datetime.now()
 		timestamp = make_time_text(starttime)
-		self.__log_filename = timestamp + "_" + self.__name + "_" + "lg.csv"
-		print(config.prog_path,config.log_directory)
-		self.__log_filename_save_as = config.prog_path + config.log_directory + self.__log_filename
-		self.__local_www_log_filename = config.local_dir_www + config.log_directory + self.__log_filename
-		self.__ftp_creds = config.ftp_creds_filename
+		self.__log_filename = timestamp + "_" + self.config.prog_name + "_" + "lg.csv"
+		print(self.config.prog_path,self.config.log_directory)
+		self.__log_filename_save_as = self.config.prog_path + self.config.log_directory + self.__log_filename
+		self.__local_www_log_filename = self.config.local_dir_www + self.config.log_directory + self.__log_filename
+		#self.__ftp_creds = config.ftp_creds_filename
 
 
 	def log_to_file(self,log_headings,log_values):
@@ -81,7 +81,7 @@ class class_buffer_log:
 		for pres_ind in range(0,len(ftp_result)):
 			pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])
 		if self.__send_plain_count < 0 :
-			ftp_result = send_by_ftp(FTP_dbug_flag,self.__ftp_creds, self.__log_filename_save_as, \
+			ftp_result = send_by_ftp(FTP_dbug_flag,self.config.ftp_creds, self.__log_filename_save_as, \
 				"log.csv",remote_log_dir,ftp_timeout)
 			for pres_ind in range(0,len(ftp_result)):
 				pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])

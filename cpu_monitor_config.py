@@ -173,7 +173,7 @@ class class_config:
 		#self.percent_full_power = float(config_read.get('SetUp', 'percent_full_power'))
 		#self.watchdog_time = float(config_read.get('SetUp', 'watchdog_time'))
 		self.ftp_timeout =  float(config_read.get('SetUp', 'ftp_timeout'))
-		self.log_buffer_flag = config_read.getboolean('SetUp', 'log_buffer_flag'))
+		self.log_buffer_flag = config_read.getboolean('SetUp', 'log_buffer_flag')
 		print("Result Flag Read: ",self.log_buffer_flag)
 		sys_exit()
 		return

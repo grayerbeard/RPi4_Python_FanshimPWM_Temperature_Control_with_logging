@@ -1,5 +1,7 @@
-__pycache__\*.*
-log\*.*
-old\*.*
+__pycache__\
+log\
+old\
 *.html
+*.pyc
+
 

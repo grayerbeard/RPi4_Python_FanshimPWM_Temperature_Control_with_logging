@@ -174,7 +174,6 @@ class class_config:
 		#self.watchdog_time = float(config_read.get('SetUp', 'watchdog_time'))
 		self.ftp_timeout =  float(config_read.get('SetUp', 'ftp_timeout'))
 		self.log_buffer_flag = config_read.getboolean('SetUp', 'log_buffer_flag')
-		print("Result Flag Read: ",self.log_buffer_flag)
 		return
 
 	def write_file(self):
@@ -188,7 +187,7 @@ class class_config:
 		#config_write.set('SetUp', 'sensor_config_filename',self.sensor_config_filename)
 		config_write.set('SetUp', 'ftp_creds_filename',self.ftp_creds_filename)
 		#config_write.set('SetUp', 'delay_limit',self.delay_limit)
-		#config_write.set('SetUp', 'delay_increment',self.delay_increment)
+		#config_write.set('SetUp', 'delay_increment',self.delay_increment)git commit
 		config_write.set('SetUp', 'ftp_log_max_count',self.ftp_log_max_count)
 		#config_write.set('SetUp', 'heaterIP0',self.heaterIP0)
 		#config_write.set('SetUp', 'heaterIP0_power_scale',self.heaterIP0_power_scale)

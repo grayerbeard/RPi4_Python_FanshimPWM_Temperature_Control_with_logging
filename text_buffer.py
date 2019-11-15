@@ -37,7 +37,7 @@ class class_text_buffer(object):
 	# Rotating Buffer Class
 	# Initiate with just the size required Parameter
 	# Get data with just a position in buffer Parameter
-	def __init__(self, size_max, headings,config,log_buffer_flag):
+	def __init__(self, size_max, headings,config):
 		#initialization
 		self.__config = config
 		print(" Buffer Init for : ",self.__config.prog_name," with a size of : ",size_max, " and  width of : ", len(headings) + 1, " including time stamp")
@@ -95,7 +95,7 @@ class class_text_buffer(object):
 		for i in range(0,len(values)):
 			self.__dta[self.__posn][i] = values[i]
 
-		#print("Buffer updated and log buffer flag is : ",self.__log_buffer_flag)
+		#print("Buffer updated and log buffer flag is : ",self.__config.log_buffer_flag)
 		if self.__config.log_buffer_flag:
 			self.__log.log_to_file(self.__headings,values)
 			self.__log.copy_log_to_www(False)

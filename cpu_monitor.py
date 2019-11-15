@@ -60,8 +60,7 @@ config.scan_count = 0
 cpu_buffer_width = 11
 
 headings = ["Count","Cpu Load","Temp","Throttle","Fan Speed","Cpu Freq","Cpu Mem","Cpu Disk","Times","Msg"]
-cpu_log_buffer_flag = True
-cpu_buffer = class_text_buffer(50,headings,config,cpu_log_buffer_flag)
+cpu_buffer = class_text_buffer(50,headings,config)
 cpu_buffer_values = [""] * (cpu_buffer_width-1)
 
 

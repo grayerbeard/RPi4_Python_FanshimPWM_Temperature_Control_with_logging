@@ -75,6 +75,7 @@ class class_config:
 		#self.percent_full_power = 100
 		#self.watchdog_time = 200
 		self.ftp_timeout = ftp_timeout
+		self.log_buffer_flag = True
 
 		
 		# These parameters are not saved to the config file
@@ -172,6 +173,9 @@ class class_config:
 		#self.percent_full_power = float(config_read.get('SetUp', 'percent_full_power'))
 		#self.watchdog_time = float(config_read.get('SetUp', 'watchdog_time'))
 		self.ftp_timeout =  float(config_read.get('SetUp', 'ftp_timeout'))
+		self.log_buffer_flag = config_read.getboolean('SetUp', 'log_buffer_flag'))
+		print("Result Flag Read: ",self.log_buffer_flag)
+		sys_exit()
 		return
 
 	def write_file(self):
@@ -208,6 +212,7 @@ class class_config:
 		#config_write.set('SetUp', 'percent_full_power',self.percent_full_power)
 		#config_write.set('SetUp', 'watchdog_time',self.percent_full_power)
 		config_write.set('SetUp', 'ftp_timeout',self.percent_full_power)
+		config_write.set('SetUp', 'log_buffer_flag',self.log_buffer_flag)
 		# Writing our configuration file to 'self.config_filename'
 		pr(self.dbug, here, "ready to write new config file withdefault values: " , self.config_filename)
 		with open(self.config_filename, 'w+') as configfile:

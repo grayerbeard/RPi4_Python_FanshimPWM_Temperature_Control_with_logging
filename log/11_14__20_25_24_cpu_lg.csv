@@ -1,0 +1,3 @@
+Time,Count,Cpu Load,Temp,Throttle,Fan Speed,Cpu Freq,Cpu Mem,Cpu Disk,Times,Msg,
+14/11/2019 20:25:24,0.002,46.251%,46.25C,0%,0%,0.6GHz,78.0%,69.4%,0s/0s,NoFlag,
+14/11/2019 20:25:29,0.003,4.8%,45.28C,-196.5%,0%,0.6GHz,78.1%,69.4%,4.999747s/1.324743s,NoFlag,

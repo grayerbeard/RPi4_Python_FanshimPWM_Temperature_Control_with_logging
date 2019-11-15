@@ -35,7 +35,7 @@ my_pid = getpid()
 init_printout = ["My PID is : " + str(my_pid)]
 
 #Set up Config file and read it in if present
-config = class_config()
+config = class_config("/home/pi/ftp_creds/ftp_creds.csv","/var/www/html/","log/",5,0.5)
 if fileexists(config.config_filename):		
 	init_printout.append("Config taken from file")
 	print( "will try to read Config File : " ,config.config_filename)

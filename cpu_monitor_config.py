@@ -29,7 +29,7 @@ from csv import DictWriter as csv_DictWriter
 #from shutil import copyfile
 #from ftplib import FTP
 #from sys import argv as sys_argv
-#from sys import exit as sys_exit
+from sys import exit as sys_exit
 #import socket
 from os import path
 from sys import argv as sys_argv
@@ -175,7 +175,6 @@ class class_config:
 		self.ftp_timeout =  float(config_read.get('SetUp', 'ftp_timeout'))
 		self.log_buffer_flag = config_read.getboolean('SetUp', 'log_buffer_flag')
 		print("Result Flag Read: ",self.log_buffer_flag)
-		sys_exit()
 		return
 
 	def write_file(self):

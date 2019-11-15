@@ -41,10 +41,6 @@ from utility import pr,make_time_text,send_by_ftp
 class class_buffer_log:
 	def __init__(self,config):
 		self.dbug = False
-		#self.__log_filename =  "not set"
-		#self.__log_filename_save_as = "not_set"
-		#self.__local_www_log_filename =  "not set"
-		#self.__ftp_creds =  "not set"
 		self.__send_plain_count = 5
 		self.__no_heading_yet = True
 		self.__config = config
@@ -54,7 +50,6 @@ class class_buffer_log:
 		print(self.__config.prog_path,self.__config.log_directory)
 		self.__log_filename_save_as = self.__config.prog_path + self.__config.log_directory + self.__log_filename
 		self.__local_www_log_filename = self.__config.local_dir_www + self.__config.log_directory + self.__log_filename
-		#self.__ftp_creds = config.ftp_creds_filename
 
 
 	def log_to_file(self,log_headings,log_values):
@@ -76,7 +71,7 @@ class class_buffer_log:
 		
 	def send_log_by_ftp(self,FTP_dbug_flag,remote_log_dir,ftp_timeout):
 		here = "bffr_log_log_by_ftp"
-		ftp_result = send_by_ftp(FTP_dbug_flag,self.__ftp_creds, self.__log_filename_save_as, \
+		ftp_result = send_by_ftp(FTP_dbug_flag,self.__config.ftp_creds_filename, self.__log_filename_save_as, \
 			self.__log_filename,remote_log_dir,ftp_timeout)
 		for pres_ind in range(0,len(ftp_result)):
 			pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])

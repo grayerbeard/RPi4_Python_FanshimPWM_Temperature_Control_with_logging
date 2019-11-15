@@ -43,10 +43,8 @@ else : # no file so needs to be written
 
 config.scan_count = 0
 
-example_buffer_width = 11
 headings = ["Count","Val1","Val2","Val3","Val4","Val5"]
-buffer_flag = True
-example_buffer = class_text_buffer(100,headings,config,buffer_flag)
+example_buffer = class_text_buffer(100,headings,config)
 
 buffer_increment_flag = True
 

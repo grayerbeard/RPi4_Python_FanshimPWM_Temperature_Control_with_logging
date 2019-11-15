@@ -192,13 +192,13 @@ def main(argv):
 	#
 	if config.sauna:
 	#	# Headings: Time,Scan#,Target,Ref Temp,On,Offset,Detect Off
-		smart_log_width = 0   ################# ????????????
+		#smart_log_width = 0   ################# ????????????
 	#	log_buffer_width = 4 + 3
 		
 	else:
 		# Headings: Time,Scan#,Target,Ref Temp,T1,T2,T3,T4,T5,I1,V1,P1,T1,I2,V2,P2,T2
 		#   1,3,5,4,4 
-		smart_log_width = 8    #################### ?????????????
+		#smart_log_width = 8    #################### ?????????????
 	#	log_buffer_width = 4 + sensors_max_number + smart_log_width
 #####
 	log_buffer_headings = ["hdg01","hdg02","hdg03","hdg04","hdg05","hdg06","hdg07","hdg08","hdg09","hdg10","hdg11","hdg14","hdg15","hdg16","hdg17","hdg18","hdg19","hdg20","hdg21"]
@@ -246,7 +246,7 @@ def main(argv):
 	#status_buffer_values = [""] * (status_buffer_width-1)
 
 	########### needed ???????
-	debug_buffer_width = 4 # One More than max number in values array to allow for col with time stamp
+	#debug_buffer_width = 4 # One More than max number in values array to allow for col with time stamp
 	debug_buffer_values = ["not set"] * (debug_buffer_width - 1)
 	########################
 	

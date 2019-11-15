@@ -3,5 +3,6 @@ log\
 old\
 *.html
 *.pyc
+*wd.csv
 
 

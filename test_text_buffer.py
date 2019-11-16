@@ -44,7 +44,7 @@ else : # no file so needs to be written
 config.scan_count = 0
 
 headings = ["Count","Val1","Val2","Val3","Val4","Val5"]
-example_buffer = class_text_buffer(100,headings,config)
+example_buffer = class_text_buffer(headings,config)
 
 buffer_increment_flag = True
 

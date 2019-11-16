@@ -16,7 +16,7 @@ following items in this repository are working OK
 <li>test_text_buffer.cfg</li>
 <li>test_text_buffer.py</li>
   </ul>
-<li>Fanshim PWM Speed Control/li>
+<li>Fanshim PWM Speed Control</li>
   <ul>
     <li>cpu_monitor.py</li>
     <li>cpu_monitor_config.py</li>

@@ -41,7 +41,16 @@ else : # no file so needs to be written
 	config.write_file()
 	print("New Config file made")
 
-config.scan_count = 0
+#.scan_count = 0
+#config.scan_count = 0
+#config.ftplog_count = 0
+#config.last_ftplog = 0
+#config.dbug = False # set True by option -d
+#config.dbug_w1 = False
+#config.dbug_ftp = False
+#config.exit_flag = False
+#config.new_config_wanted = False
+#config.text_buffer_length = 15
 
 headings = ["Count","Val1","Val2","Val3","Val4","Val5"]
 example_buffer = class_text_buffer(headings,config)

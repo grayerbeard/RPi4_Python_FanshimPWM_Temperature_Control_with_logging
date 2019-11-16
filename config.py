@@ -72,25 +72,6 @@ class class_config:
 		self.config_filename = "config.cfg"
 		print("Program Name is : ",self.prog_name)
 		print("config file is : ",self.config_filename)
-		self.html_filename = ""
-		self.log_filename = ""
-		self.log_filename_save_as = ""
-		self.local_www_html_filename = ""
-		
-		
-		self.log_on = False
-		self.temp_log_on = False
-		self.log_outfile = ""
-		self.temp_log_outfile = ""
-		self.scan_count = 0
-		self.ftplog_count = 0
-		self.temp_ftplog_count = 0
-		self.last_ftplog = 0
-		self.ref_sensor_index = 0
-		self.dbug = False
-		self.dbug_ftp = False
-		self.exit_flag = False
-		self.new_config_wanted = False
 
 	def read_file(self):
 		here = "config.read_file"
@@ -141,20 +122,6 @@ class class_config:
 		config_write.set(section, 'max_speed',self.max_speed)		
 		config_write.set(section, 'min_freq',self.min_freq)
 		config_write.set(section, 'max_freq',self.max_freq)			
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		config_write.set(section, 'change4log',self.change4log)
-		config_write.set(section, 'ftp_timeout',self.percent_full_power)
-		
 		
 		# Writing our configuration file to 'self.config_filename'
 		pr(self.dbug, here, "ready to write new config file with default values: " , self.config_filename)

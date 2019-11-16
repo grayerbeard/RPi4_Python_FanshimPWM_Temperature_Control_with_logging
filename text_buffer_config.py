@@ -60,23 +60,6 @@ class class_config:
 		self.prog_path = path.dirname(path.realpath(__file__)) + "/"
 		self.prog_name = str(sys_argv[0][:-3])
 		self.config_filename = self.prog_name + ".cfg"
-		#  was self.sensor_info_filename = ""  august 9th 2018
-		#self.log_on = False
-		#self.log_outfile = ""
-		self.scan_count = 0
-		self.ftplog_count = 0
-		self.last_ftplog = 0
-		self.dbug = False # set True by option -d
-		self.dbug_w1 = False
-		self.dbug_ftp = False
-		self.exit_flag = False
-		self.new_config_wanted = False
-		self.text_buffer_length = 15
-		
-		print("self.ftp_creds_filename : ",self.ftp_creds_filename)
-
-	#def set_filename(self,c_filename):
-	#	self.__c_filename =  c_filename
 
 	def read_file(self):
 		here = "config.read_file"

@@ -58,7 +58,7 @@ except:
 config.scan_count = 0
 
 headings = ["Count","Cpu Load","Temp","Throttle","Fan Speed","Cpu Freq","Cpu Mem","Cpu Disk","Times","Msg"]
-cpu_buffer = class_text_buffer(50,headings,config)
+cpu_buffer = class_text_buffer(headings,config)
 
 #Fan shim related
 plasma.set_clear_on_exit(True)

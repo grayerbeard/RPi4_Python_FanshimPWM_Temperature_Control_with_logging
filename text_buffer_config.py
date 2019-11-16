@@ -71,6 +71,7 @@ class class_config:
 		self.dbug_ftp = False
 		self.exit_flag = False
 		self.new_config_wanted = False
+		self.text_buffer_length = 15
 		
 		print("self.ftp_creds_filename : ",self.ftp_creds_filename)
 
@@ -89,6 +90,7 @@ class class_config:
 		self.ftp_log_max_count = float(config_read.get('SetUp', 'ftp_log_max_count'))
 		self.ftp_timeout =  float(config_read.get('SetUp', 'ftp_timeout'))
 		self.log_buffer_flag =  config_read.getboolean('SetUp', 'log_buffer_flag')
+		self.text_buffer_length  = int(config_read.get('SetUp', 'text_buffer_length'))
 		return
 
 	def write_file(self):
@@ -101,6 +103,7 @@ class class_config:
 		config_write.set('SetUp', 'local_dir_www',self.local_dir_www)
 		config_write.set('SetUp', 'ftp_creds_filename',self.ftp_creds_filename)
 		config_write.set('SetUp', 'ftp_log_max_count',self.ftp_log_max_count)
+		config_write.set('SetUp', 'log_buffer_flag',self.log_buffer_flag)
 
 		config_write.set('SetUp', 'ftp_timeout',self.ftp_timeout)
 		# Writing our configuration file to 'config_filename'

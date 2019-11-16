@@ -76,7 +76,7 @@ class class_buffer_log:
 		for pres_ind in range(0,len(ftp_result)):
 			pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])
 		if self.__send_plain_count < 0 :
-			ftp_result = send_by_ftp(FTP_dbug_flag,self.__config.ftp_creds, self.__log_filename_save_as, \
+			ftp_result = send_by_ftp(FTP_dbug_flag,self.__config.ftp_creds_filename, self.__log_filename_save_as, \
 				"log.csv",remote_log_dir,ftp_timeout)
 			for pres_ind in range(0,len(ftp_result)):
 				pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])

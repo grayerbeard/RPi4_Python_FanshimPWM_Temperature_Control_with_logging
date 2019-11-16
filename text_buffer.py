@@ -37,7 +37,7 @@ class class_text_buffer(object):
 	# Rotating Buffer Class
 	# Initiate with just the size required Parameter
 	# Get data with just a position in buffer Parameter
-	def __init__(self, size_max,headings,config):
+	def __init__(self,headings,config):
 		#initialization
 		self.__config = config
 		print(" Buffer Init for : ",self.__config.prog_name," with a size of : ",size_max, " and  width of : ", len(headings) + 1, " including time stamp")
@@ -45,15 +45,11 @@ class class_text_buffer(object):
 		    os.makedirs('log')
 
 		self.__source_ref = 0 # a number used to control prevention repeat messages
-		self.__size_max = size_max
 		self.__width = len(headings) + 1                     
 		self.line_values = ["1"]*len(headings)
-		self.__dta = [ [ None for di in range(self.__width+1) ] for dj in range(self.__size_max+1) ]
+		self.__dta = [ [ None for di in range(self.__width+1) ] for dj in range(self.__config.text_buffer_length+1) ]
 		self.__size = 0
-		self.__posn = self.__size_max-1
-		# self.__html_filename = "not set"
-		# self.__www_filename = "not set"
-		# self.__ftp_creds = "not set"
+		self.__posn = self.__config.text_buffer_length-1
 		self.__headings = ["Time"]
 		for hdg_ind in range(0,self.__width-1):
 			#print(hdg_ind,headings[hdg_ind])
@@ -70,16 +66,16 @@ class class_text_buffer(object):
 			self.__log = class_buffer_log(config)
 		
 	def size(self):
-		return self.__size_max
+		return self.__config.text_buffer_length
 
 	def update_buffer(self,values,appnd,ref):
 		#append a line of info at the current position plus 1 
 		# print("Update Buffer appnd and ref are : ",appnd,ref)
 		if appnd + (self.__source_ref != ref):
 			#we adding message and incrementing posn
-			if self.__size < self.__size_max-1 :
+			if self.__size < self.__config.text_buffer_length-1 :
 				self.__size += 1
-			if self.__posn == self.__size_max-1:
+			if self.__posn == self.__config.text_buffer_length-1:
 				# last insert was at the end so go back to beginning@@
 				self.__posn = 0
 			else:
@@ -121,14 +117,14 @@ class class_text_buffer(object):
 			# need to take values from after current insert position
 			for i in range(self.__width):
 				#following two lines used too debug the calc to get the lower part of status file
-				#print("That Calc key,self.__size,self.__size_max, self.__posn-key,key sum",
-				 #  key,self.__size,self.__size_max, self.__posn-key,(self.__posn-key),self.(size_max + (self.__posn-key))
-				line_dta[i] = self.__dta[self.__size_max + (self.__posn-key)][i]
+				#print("That Calc key,self.__size,self.__config.text_buffer_length, self.__posn-key,key sum",
+				 #  key,self.__size,self.__config.text_buffer_length, self.__posn-key,(self.__posn-key),self.(size_max + (self.__posn-key))
+				line_dta[i] = self.__dta[self.__config.text_buffer_length + (self.__posn-key)][i]
 			return(line_dta)	
 
 	def get_dta(self):
 		# get all the data inserted so far, or the whole buffer
-		all_data = [ [ None for di in range(self.__width+1) ] for dj in range(self.__size_max+1) ]
+		all_data = [ [ None for di in range(self.__width+1) ] for dj in range(self.__config.text_buffer_length+1) ]
 		for ind in range(0,self.__size):
 			line_dta = self.get_line_dta(ind)
 			# Following line for debug data from Buffer

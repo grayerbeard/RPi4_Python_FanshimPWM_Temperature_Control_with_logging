@@ -22,6 +22,7 @@ following items in this repository are working OK
     <li>cpu_monitor_config.py</li>
     <li>cpu_monitor_config.cfg</li>
     <li>cpu.py</li>
+    <li>tmux_stress.sh</li>
   </ul>
 </ul>
 following items are not yet developed to working versions

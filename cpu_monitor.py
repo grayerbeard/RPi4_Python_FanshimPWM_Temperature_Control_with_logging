@@ -98,7 +98,6 @@ correction = 4.02
 
 
 while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
-	print("Count/Max",config.scan_count,config.max_scans)
 	try:
 		loop_start_time = datetime.now()
 		cpu.get_data()

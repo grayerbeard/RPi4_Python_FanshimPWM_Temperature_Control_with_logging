@@ -17,7 +17,7 @@ from shutil import copyfile
 # None
 
 # Local application imports
-from text_buffer_config import class_config
+from config import class_config
 from text_buffer import class_text_buffer
 from utility import fileexists,pr,make_time_text
 

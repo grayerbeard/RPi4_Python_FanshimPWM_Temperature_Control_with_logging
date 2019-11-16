@@ -23,7 +23,7 @@ import plasma
 # Third party imports
 # None
 # Local application imports
-from cpu_monitor_config import class_config
+from config import class_config
 from text_buffer import class_text_buffer
 from cpu import class_cpu
 from utility import fileexists,pr,make_time_text
@@ -35,7 +35,7 @@ my_pid = getpid()
 init_printout = ["My PID is : " + str(my_pid)]
 
 #Set up Config file and read it in if present
-config = class_config("/home/pi/ftp_creds/ftp_creds.csv","/var/www/html/","log/",5,0.5)
+config = class_config()
 if fileexists(config.config_filename):		
 	init_printout.append("Config taken from file")
 	print( "will try to read Config File : " ,config.config_filename)
@@ -66,23 +66,24 @@ plasma.set_light_count(1)
 plasma.set_light(0, 0, 0, 0)
 
 #Target Range temperatures
-max_temp =  69.0
-min_temp = 61.0   
+#max_temp =  69.0
+#min_temp = 61.0   
+#min_speed = 75 # minimum percent speed
+#max_speed = 90 # max percent PWM speed
+#brightness = 80
+
 lower_mid_temp =   (max_temp  + min_temp)/2  - ((max_temp - min_temp)/4)
 upper_mid_temp =   (max_temp  + min_temp)/2  + ((max_temp - min_temp)/4)
 lower_min_temp =   min_temp - ((max_temp  - min_temp)/2)
-
 print(lower_min_temp,min_temp,lower_mid_temp,upper_mid_temp,max_temp)
 
-target_loop_time = 5   # target cycle time in secounds, code self adjusts to acheive this
-min_speed = 75 # minimum percent speed
-max_speed = 90 # max percent PWM speed
-print("lower_mid_temp is : ",lower_mid_temp)
-brightness = 80
+
+# Set The Initial Conditions
 freq = 2
-check = 0.001
 speed = 0 
+sub_count = 0.001
 throttle = 0
+print("lower_mid_temp is : ",lower_mid_temp)
 try_throttle_calc_smoothed = 0
 last_cpu_temp = min_temp
 buffer_increment_flag = True
@@ -95,14 +96,12 @@ correction = 4.02
 #print("Config filename: ",config.config_filename)
 #sys_exit()
 
-
-
 while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	try:
 		loop_start_time = datetime.now()
 		cpu.get_data()
-		check += 0.001
-		count_for_WD = int(100*(config.scan_count + check))
+		sub_count += 0.001
+		count_for_WD = int(100*(config.scan_count + sub_count))
 		try_throttle_calc = 100 * (cpu.temp - min_temp)/(max_temp - min_temp)
 		try_throttle_calc_smoothed = try_throttle_calc_smoothed + 0.1*(try_throttle_calc - try_throttle_calc_smoothed)
 		change = cpu.temp - last_cpu_temp
@@ -112,7 +111,7 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	
 		# Check CPU temperature situation to use in below IF  statements
 		# Display data occasionally
-		c_or_1 = check >= 0.998
+		c_or_1 = sub_count >= 0.998
 		# Turn off Fan when on and below target range
 		c_or_2 = (throttle > 0) and (cpu.temp<lower_min_temp)  # e.g. if using 61 to 69 then 57
 		# Turn fan on when temperature increasing fast
@@ -150,7 +149,7 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	
 			cpu.update_led_temperature(cpu.temp,max_temp,min_temp,brightness)
 	
-			cpu_buffer.line_values[0] = str(round(config.scan_count + check,3))
+			cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
 			cpu_buffer.line_values[1] = str(cpu.average_load) + "%"
 			cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
 			cpu_buffer.line_values[3] = str(round(throttle,1))+ "%"
@@ -165,13 +164,13 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 			cpu_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
 	
 			config.scan_count += 1
-			check = 0
+			sub_count = 0
 		
 		else:
 			#Uncomment following Two lines to observe if curious
-			#print(" Count : ",round(config.scan_count+check,2),cpu.get_av_cpu_load_so_far(),"Temp : ",
+			#print(" Count : ",round(config.scan_count+sub_count,2),cpu.get_av_cpu_load_so_far(),"Temp : ",
 			#	round(cpu.temp,2),"Throttle/smoothed : ",round(try_throttle_calc,2),"/",round(try_throttle_calc_smoothed,2)) 
-			cpu_buffer.line_values[0] = str(round(config.scan_count + check,3))
+			cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
 			
 			if buffer_increment_flag:
 				cpu_buffer.line_values[1] = str(cpu.average_load) + "%"
@@ -198,8 +197,8 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	
 		# Adjust the sleep time to aceive the target loop time and apply
 		# with a slow acting correction added in to gradually improve accuracy
-		if loop_time < target_loop_time:
-			sleep_time = target_loop_time - loop_time - (correction/1000)
+		if loop_time < config.scan_delay:
+			sleep_time = config.scan_delay - loop_time - (correction/1000)
 			try:
 				time_sleep(sleep_time)
 			except KeyboardInterrupt:

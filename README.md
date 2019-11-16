@@ -1,5 +1,5 @@
 # RPi4_Python_FanshimPWM_Temperature_Control_with_logging
-R Pi 4 with Fanshim Cooling controlled with PWM, temperature control suitable for smartplugs or SCR with PWM and with temperature logging and remote monitoring.  All separate funtions split among classes.
+R Pi 4 with Fanshim Cooling controlled with PWM, temperature control suitable for smartplugs or SCR with PWM and with temperature logging and remote monitoring.  All separate functions split among classes.
 
 following items in this repository are working OK
 <ul>
@@ -16,12 +16,13 @@ following items in this repository are working OK
 <li>test_text_buffer.cfg</li>
 <li>test_text_buffer.py</li>
   </ul>
-<li>Fanshim PWM Speed Control/li>
+<li>Fanshim PWM Speed Control</li>
   <ul>
     <li>cpu_monitor.py</li>
     <li>cpu_monitor_config.py</li>
     <li>cpu_monitor_config.cfg</li>
     <li>cpu.py</li>
+    <li>tmux_stress.sh</li>
   </ul>
 </ul>
 following items are not yet developed to working versions

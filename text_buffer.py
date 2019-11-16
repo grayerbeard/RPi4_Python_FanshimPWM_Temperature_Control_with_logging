@@ -40,7 +40,7 @@ class class_text_buffer(object):
 	def __init__(self,headings,config):
 		#initialization
 		self.__config = config
-		print(" Buffer Init for : ",self.__config.prog_name," with a size of : ",size_max, " and  width of : ", len(headings) + 1, " including time stamp")
+		print(" Buffer Init for : ",self.__config.prog_name," with a size of : ",self.__config.text_buffer_length, " and  width of : ", len(headings) + 1, " including time stamp")
 		if not os.path.exists('log'):
 		    os.makedirs('log')
 
@@ -118,7 +118,7 @@ class class_text_buffer(object):
 			for i in range(self.__width):
 				#following two lines used too debug the calc to get the lower part of status file
 				#print("That Calc key,self.__size,self.__config.text_buffer_length, self.__posn-key,key sum",
-				 #  key,self.__size,self.__config.text_buffer_length, self.__posn-key,(self.__posn-key),self.(size_max + (self.__posn-key))
+				 #  key,self.__size,self.__config.text_buffer_length, self.__posn-key,(self.__posn-key),self.(self.__config.text_buffer_length + (self.__posn-key))
 				line_dta[i] = self.__dta[self.__config.text_buffer_length + (self.__posn-key)][i]
 			return(line_dta)	
 

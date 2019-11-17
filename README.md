@@ -5,6 +5,8 @@ following items in this repository are working OK
 <ul>
 <li>Common Use classes</li>
   <ul>
+    <li>config.cfg</li>
+    <li>config.py</li>
     <li>utility.py</li>
     <li>buffer_log.py</li>
     <li>text_buffer.py</li>
@@ -13,14 +15,11 @@ following items in this repository are working OK
   </ul>
 <li>Test the text buffer</li>
   <ul>
-<li>test_text_buffer.cfg</li>
 <li>test_text_buffer.py</li>
   </ul>
 <li>Fanshim PWM Speed Control</li>
   <ul>
     <li>cpu_monitor.py</li>
-    <li>cpu_monitor_config.py</li>
-    <li>cpu_monitor_config.cfg</li>
     <li>cpu.py</li>
     <li>tmux_stress.sh</li>
   </ul>
@@ -47,12 +46,4 @@ following are provided as a template needing editing to work on a particular sys
   <li>mount_drives.sh</li>
 </ul>
   </ul>
- 
-following are just back ups of old versions for reference
-<ul>
-  <ul>
-    <li>config.py old version for reference</li>
-    <li>config.cfg old version for reference</li>
-    <li>cpu_temp_log.py old version for reference</li>
-  </ul>
-</ul>
+

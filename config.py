@@ -48,8 +48,8 @@ class class_config:
 		self.scan_delay = 5		# delay in seconds between each scan (not incl sensor responce times)
 		self.max_scans = 0			# number of scans to do, set to zero to scan for ever (until type "ctrl C")
 	# Log
-		self.log_directory = log_directory	# where to send log files both temp control and processor temp logging
-		self.local_dir_www = local_dir_www # default value for local folder
+		self.log_directory = log/	# where to send log files both temp control and processor temp logging
+		self.local_dir_www = /var/www/html/ # default value for local folder
 		self.log_buffer_flag = True		
 		self.text_buffer_length = 15		
 	# Ftp

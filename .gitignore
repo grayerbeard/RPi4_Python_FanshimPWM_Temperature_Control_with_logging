@@ -4,5 +4,6 @@ old\
 *.html
 *.pyc
 *wd.csv
+log\*.csv
 
 

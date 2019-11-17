@@ -86,20 +86,20 @@ plasma.set_light(0, 0, 0, 0)
 #max_speed = 90 # max percent PWM speed
 #brightness = 80
 
-lower_mid_temp =   (max_temp  + min_temp)/2  - ((max_temp - min_temp)/4)
-upper_mid_temp =   (max_temp  + min_temp)/2  + ((max_temp - min_temp)/4)
-lower_min_temp =   min_temp - ((max_temp  - min_temp)/2)
-print(lower_min_temp,min_temp,lower_mid_temp,upper_mid_temp,max_temp)
+lower_mid_temp =   (config.max_temp  + config.min_temp)/2  - ((config.max_temp - config.min_temp)/4)
+upper_mid_temp =   (config.max_temp  + config.min_temp)/2  + ((config.max_temp - config.min_temp)/4)
+lower_min_temp =   config.min_temp - ((config.max_temp  - config.min_temp)/2)
+print(lower_min_temp,config.min_temp,lower_mid_temp,upper_mid_temp,config.max_temp)
 
 
 # Set The Initial Conditions
-freq = 2
+freq = config.min_freq
 speed = 0 
 sub_count = 0.001
 throttle = 0
 print("lower_mid_temp is : ",lower_mid_temp)
 try_throttle_calc_smoothed = 0
-last_cpu_temp = min_temp
+last_cpu_temp = config.min_temp
 buffer_increment_flag = True
 the_end_time = datetime.now()
 last_total = 0
@@ -116,7 +116,7 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu.get_data()
 		sub_count += 0.001
 		count_for_WD = int(100*(config.scan_count + sub_count))
-		try_throttle_calc = 100 * (cpu.temp - min_temp)/(max_temp - min_temp)
+		try_throttle_calc = 100 * (cpu.temp - config.min_temp)/(config.max_temp - config.min_temp)
 		try_throttle_calc_smoothed = try_throttle_calc_smoothed + 0.1*(try_throttle_calc - try_throttle_calc_smoothed)
 		change = cpu.temp - last_cpu_temp
 		if change > 1.1:
@@ -139,9 +139,9 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	
 			cpu.calc_averages()
 	
-			if cpu.temp >= max_temp:
+			if cpu.temp >= config.max_temp:
 				throttle = 100
-			elif cpu.temp<= min_temp:
+			elif cpu.temp<= config.min_temp:
 				throttle = 0
 			elif cpu.temp >= upper_mid_temp:
 				# use lastest info when temperature high
@@ -154,14 +154,14 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	
 			if throttle <= 0 :
 				speed = 0
-				freq = 2
+				freq = config.min_freq
 			else:
-				speed = min_speed + (throttle*(max_speed-min_speed)/100)
-				freq = 5
+				speed = config.min_speed + (throttle*(config.max_speed-config.min_speed)/100)
+				freq = config.max_freq
 	
 			cpu.set_pwm_control_fan(freq,speed)
 	
-			cpu.update_led_temperature(cpu.temp,max_temp,min_temp,brightness)
+			cpu.update_led_temperature(cpu.temp,config.max_temp,config.min_temp,config.brightness)
 	
 			cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
 			cpu_buffer.line_values[1] = str(cpu.average_load) + "%"

@@ -48,10 +48,10 @@ class class_config:
 		self.scan_delay = 5		# delay in seconds between each scan (not incl sensor responce times)
 		self.max_scans = 0			# number of scans to do, set to zero to scan for ever (until type "ctrl C")
 	# Log
-		self.log_directory = log/	# where to send log files both temp control and processor temp logging
-		self.local_dir_www = /var/www/html/ # default value for local folder
-		self.log_buffer_flag = True		
-		self.text_buffer_length = 15		
+		self.log_directory = "log/"	# where to store log files
+		self.local_dir_www = "/var/www/html/" # default value for local web folder
+		self.log_buffer_flag = True	 # whether to generate the csv log file as well as the html text file	
+		self.text_buffer_length = 15	# number of lines in the text buffer in the html file	
 	# Ftp
 		self.ftp_creds_filename = "/home/pi/ftp_creds/ftp_creds.csv"
 		self.ftp_log_max_count  = 5

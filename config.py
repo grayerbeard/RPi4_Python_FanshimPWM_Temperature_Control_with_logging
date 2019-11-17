@@ -62,6 +62,8 @@ class class_config:
 		self.min_temp = 61.0 
 		self.min_speed = 75
 		self.max_speed = 90
+		self.min_freq = 2.0
+		self.max_freq = 5.0
 # End of items set in config.cfg	
 
 # Start of parameters are not saved to the config file
@@ -93,8 +95,8 @@ class class_config:
 		self.min_temp =  float(config_read.get(section, 'min_temp'))
 		self.min_speed =  float(config_read.get(section, 'min_speed'))
 		self.max_speed =  float(config_read.get(section, 'max_speed'))
-		self.min_speed =  float(config_read.get(section, 'min_freq'))
-		self.max_speed =  float(config_read.get(section, 'max_freq'))
+		self.min_freq =  float(config_read.get(section, 'min_freq'))
+		self.max_freq =  float(config_read.get(section, 'max_freq'))
 		return
 
 	def write_file(self):

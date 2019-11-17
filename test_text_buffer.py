@@ -21,7 +21,7 @@ from config import class_config
 from text_buffer import class_text_buffer
 from utility import fileexists,pr,make_time_text
 
-config = class_config("/home/pi/ftp_creds/ftp_creds.csv","/var/www/html/","log/",5,10)
+config = class_config()
 
 ################################
 #print("config.ftp_creds_filename : ",config.ftp_creds_filename)
@@ -41,16 +41,18 @@ else : # no file so needs to be written
 	config.write_file()
 	print("New Config file made")
 
-#.scan_count = 0
-#config.scan_count = 0
-#config.ftplog_count = 0
-#config.last_ftplog = 0
-#config.dbug = False # set True by option -d
-#config.dbug_w1 = False
-#config.dbug_ftp = False
-#config.exit_flag = False
-#config.new_config_wanted = False
-#config.text_buffer_length = 15
+
+############################  each below needs o be check if needed or if could be moved into config.cfg
+scan_count = 0
+config.scan_count = 0
+config.ftplog_count = 0
+config.last_ftplog = 0
+config.dbug = False # set True by option -d
+config.dbug_w1 = False
+config.dbug_ftp = False
+config.exit_flag = False
+config.new_config_wanted = False
+config.text_buffer_length = 15
 
 headings = ["Count","Val1","Val2","Val3","Val4","Val5"]
 example_buffer = class_text_buffer(headings,config)

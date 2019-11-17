@@ -54,21 +54,22 @@ try:
 	print("finish copy")
 except:
 	print("Cannot copy old files")
-		
-#config.log_on = False
-#config.temp_log_on = False
-#config.log_outfile = ""
-#config.temp_log_outfile = ""
-#config.scan_count = 0
-#config.ftplog_count = 0
-#config.temp_ftplog_count = 0
-#config.last_ftplog = 0
-#config.ref_sensor_index = 0
-#config.dbug = False
-#config.dbug_ftp = False
-#config.exit_flag = False
-#config.new_config_wanted = False
-#config.scan_count = 0
+
+############################  each below needs o be check if needed or if could be moved into config.cfg		
+config.log_on = False
+config.temp_log_on = False
+config.log_outfile = ""
+config.temp_log_outfile = ""
+config.scan_count = 0
+config.ftplog_count = 0
+config.temp_ftplog_count = 0
+config.last_ftplog = 0
+config.ref_sensor_index = 0
+config.dbug = False
+config.dbug_ftp = False
+config.exit_flag = False
+config.new_config_wanted = False
+config.scan_count = 0
 
 headings = ["Count","Cpu Load","Temp","Throttle","Fan Speed","Cpu Freq","Cpu Mem","Cpu Disk","Times","Msg"]
 cpu_buffer = class_text_buffer(headings,config)

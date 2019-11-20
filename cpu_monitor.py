@@ -28,6 +28,7 @@ from text_buffer import class_text_buffer
 from cpu import class_cpu
 from utility import fileexists,pr,make_time_text
 from wd import class_wd
+from algorithm_01 import class_control
 
 cpu = class_cpu()
 wd = class_wd("cpu_wd")
@@ -79,132 +80,48 @@ plasma.set_clear_on_exit(True)
 plasma.set_light_count(1)
 plasma.set_light(0, 0, 0, 0)
 
-#Target Range temperatures
-#max_temp =  69.0
-#min_temp = 61.0   
-#min_speed = 75 # minimum percent speed
-#max_speed = 90 # max percent PWM speed
-#brightness = 80
-
-lower_mid_temp =   (config.max_temp  + config.min_temp)/2  - ((config.max_temp - config.min_temp)/4)
-upper_mid_temp =   (config.max_temp  + config.min_temp)/2  + ((config.max_temp - config.min_temp)/4)
-lower_min_temp =   config.min_temp - ((config.max_temp  - config.min_temp)/2)
-print(lower_min_temp,config.min_temp,lower_mid_temp,upper_mid_temp,config.max_temp)
-
+control = class_control()
 
 # Set The Initial Conditions
-freq = config.min_freq
-speed = 0 
 sub_count = 0.001
-throttle = 0
-print("lower_mid_temp is : ",lower_mid_temp)
-try_throttle_calc_smoothed = 0
-last_cpu_temp = config.min_temp
-buffer_increment_flag = True
 the_end_time = datetime.now()
 last_total = 0
 loop_time = 0
 correction = 4.02
 
-#print("FTP Cred File is: ",config.ftp_creds_filename)
-#print("Config filename: ",config.config_filename)
-#sys_exit()
-
 while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	try:
+		# Loop Management and Watchdog
 		loop_start_time = datetime.now()
-		cpu.get_data()
-		sub_count += 0.001
 		count_for_WD = int(100*(config.scan_count + sub_count))
-		try_throttle_calc = 100 * (cpu.temp - config.min_temp)/(config.max_temp - config.min_temp)
-		try_throttle_calc_smoothed = try_throttle_calc_smoothed + 0.1*(try_throttle_calc - try_throttle_calc_smoothed)
-		change = cpu.temp - last_cpu_temp
-		if change > 1.1:
-			print("---------------- Big CTemp Increase : ",last_cpu_temp, " to ",cpu.temp, " so ", change)
-		last_cpu_temp = cpu.temp
-	
-		# Check CPU temperature situation to use in below IF  statements
-		# Display data occasionally
-		c_or_1 = sub_count >= 0.998
-		# Turn off Fan when on and below target range
-		c_or_2 = (throttle > 0) and (cpu.temp<lower_min_temp)  # e.g. if using 61 to 69 then 57
-		# Turn fan on when temperature increasing fast
-		c_or_3 = (change > 2.1) and (cpu.temp > lower_mid_temp)# e.g. if using 61 to 69 then 63
-		# Turn fan on when temperature approaching top of target range.
-		c_or_4 = cpu.temp >= upper_mid_temp 				   # e.g. if using 61 to 69 then 67	
-	
-		if c_or_1 or c_or_2 or c_or_3 or c_or_4:
-	
-			buffer_increment_flag = True
-	
-			cpu.calc_averages()
-	
-			if cpu.temp >= config.max_temp:
-				throttle = 100
-			elif cpu.temp<= config.min_temp:
-				throttle = 0
-			elif cpu.temp >= upper_mid_temp:
-				# use lastest info when temperature high
-				throttle = try_throttle_calc
-			elif try_throttle_calc_smoothed > 0:
-				# use smoothed data when temperature lower and smoother value over zero
-				throttle = try_throttle_calc_smoothed
-			else:
-				throttle = 6
-	
-			if throttle <= 0 :
-				speed = 0
-				freq = config.min_freq
-			else:
-				speed = config.min_speed + (throttle*(config.max_speed-config.min_speed)/100)
-				freq = config.max_freq
-	
-			cpu.set_pwm_control_fan(freq,speed)
-	
-			cpu.update_led_temperature(cpu.temp,config.max_temp,config.min_temp,config.brightness)
-	
-			cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
-			cpu_buffer.line_values[1] = str(cpu.average_load) + "%"
-			cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
-			cpu_buffer.line_values[3] = str(round(throttle,1))+ "%"
-			cpu_buffer.line_values[4] = str(round(speed,1))+ "%"
-			cpu_buffer.line_values[5] = str(cpu.cpu_freq.current/1000) + "GHz"
-			cpu_buffer.line_values[6] = str(cpu.cpu_mem) + "%"
-			cpu_buffer.line_values[7] = str(cpu.cpu_disk) + "%"
-			cpu_buffer.line_values[8] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
-			cpu_buffer.line_values[9] = str(int(c_or_1)) + str(int(c_or_2)) + str(int(c_or_3)) + str(int(c_or_4))
-	
-			refresh_time = config.scan_delay + (config.scan_delay/3)
-			cpu_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
-	
-			config.scan_count += 1
-			sub_count = 0
+		sub_count += 0.001
 		
-		else:
-			#Uncomment following Two lines to observe if curious
-			#print(" Count : ",round(config.scan_count+sub_count,2),cpu.get_av_cpu_load_so_far(),"Temp : ",
-			#	round(cpu.temp,2),"Throttle/smoothed : ",round(try_throttle_calc,2),"/",round(try_throttle_calc_smoothed,2)) 
-			cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
-			
-			if buffer_increment_flag:
-				cpu_buffer.line_values[1] = str(cpu.average_load) + "%"
-				cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
-				cpu_buffer.line_values[3] = str(round(throttle,1))+ "%"
-			else:
-				cpu_buffer.line_values[1] = str(cpu.cpu_load) + "%"
-				cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
-				cpu_buffer.line_values[3] = str(round(try_throttle_calc,1))+ "%"
-			cpu_buffer.line_values[4] = str(round(speed,1))+ "%"
-			cpu_buffer.line_values[5] = str(cpu.cpu_freq.current/1000) + "GHz"
-			cpu_buffer.line_values[6] = str(cpu.cpu_mem) + "%"
-			cpu_buffer.line_values[7] = str(cpu.cpu_disk) + "%"
-			cpu_buffer.line_values[8] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
-			cpu_buffer.line_values[9] = "NoFlag"
-			refresh_time = config.scan_delay + (config.scan_delay/3)
-			cpu_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
-			if throttle == 0:
-				buffer_increment_flag = False
+		# Control
+		cpu.get_data()
+		control.calc(cpu.temp)
+		cpu.set_pwm_control_fan(control.freq,control.speed)
 		cpu.control_fan()
+		cpu.update_led_temperature(cpu.temp,config.max_temp,config.min_temp,config.brightness)
+	
+		# Logging
+		cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
+		cpu_buffer.line_values[1] = str(cpu.average_load) + "%"
+		cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
+		cpu_buffer.line_values[3] = str(round(control.throttle,1))+ "%"
+		cpu_buffer.line_values[4] = str(round(control.speed,1))+ "%"
+		cpu_buffer.line_values[5] = str(cpu.cpu_freq.current/1000) + "GHz"
+		cpu_buffer.line_values[6] = str(cpu.cpu_mem) + "%"
+		cpu_buffer.line_values[7] = str(cpu.cpu_disk) + "%"
+		cpu_buffer.line_values[8] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
+		cpu_buffer.line_values[9] = str(int(c_or_1)) + str(int(c_or_2)) + str(int(c_or_3)) + str(int(c_or_4))
+	
+		refresh_time = config.scan_delay + (config.scan_delay/3)
+		cpu_buffer.pr(control.buffer_increment_flag,0,loop_start_time,refresh_time)
+	
+		# Loop Managemnt and Watchdog
+		config.scan_count += 1
+		if control.buffer_increment_flag:
+			sub_count = 0
 		wd.put_wd(count_for_WD,"ok")
 		loop_end_time = datetime.now()
 		loop_time = (loop_end_time - loop_start_time).total_seconds()

@@ -46,7 +46,7 @@ class class_control:  # for calc of freq and speed
 			self.speed = 0
 			self.throttle = 0
 			self.buffer_increment_flag = False 
-		elif self.throttle > 1
+		elif self.throttle > 1 :
 			# Fan at Max
 			freq = config.max_freq
 			speed = config.max_speed

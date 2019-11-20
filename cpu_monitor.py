@@ -115,7 +115,7 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu_buffer.line_values[10] = str(control.buffer_increment_flag)
 	
 		refresh_time = config.scan_delay + (config.scan_delay/3)
-		cpu_buffer.pr(True,0,loop_start_time,refresh_time)
+		cpu_buffer.pr(control.buffer_increment_flag,0,loop_start_time,refresh_time)
 	
 		# Loop Managemnt and Watchdog
 		if control.buffer_increment_flag:

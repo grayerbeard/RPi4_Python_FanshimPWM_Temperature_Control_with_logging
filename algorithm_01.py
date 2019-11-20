@@ -55,8 +55,8 @@ class class_control:  # for calc of freq and speed
 		else:	
 			# Fan "Throttled" between Min_speed and max_speed
 			# Simarly for frequency
-			self.freq = (self.throttle*(self.config.max_freq - self.config.min_freq))+self.config.min_freq)
-			self.speed = (self.throttle*(self.config.max_speed - self.config.min_speed))+self.config.min_speed)
+			self.freq = (self.throttle*(self.config.max_freq - self.config.min_freq))+self.config.min_freq
+			self.speed = (self.throttle*(self.config.max_speed - self.config.min_speed))+self.config.min_speed
 			self.throttle  = 100 * control.throttle
 			self.buffer_increment_flag = True 
 		

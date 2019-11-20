@@ -108,7 +108,7 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
 		
 		# Increment Log Count
-		if control.buffer_increment_flag:
+		if control.fan_on:
 			sub_count = 0.001
 			config.scan_count += 1
 		else:

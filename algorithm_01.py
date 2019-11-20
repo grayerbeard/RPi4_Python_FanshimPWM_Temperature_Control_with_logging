@@ -39,24 +39,23 @@ class class_control:  # for calc of freq and speed
 
 	def calc(self,temp):
 		# Following gives 0 to 1 over range min_temp to max_temp
-		self.throttle = (temp - self.config.min_temp)/(self.config.max_temp - self.config.min_temp)
+		self.throttle = 100*(temp - self.config.min_temp)/(self.config.max_temp - self.config.min_temp)
 		if self.throttle < 0 :
 			# Fan Off
-			self.freq = config.min_freq
+			self.freq = self.config.min_freq
 			self.speed = 0
 			self.throttle = 0
 			self.buffer_increment_flag = False 
-		elif self.throttle > 1 :
+		elif self.throttle > 100 :
 			# Fan at Max
-			freq = config.max_freq
-			speed = config.max_speed
+			freq = self.config.max_freq
+			speed = self.config.max_speed
 			self.throttle  = 100
 			self.buffer_increment_flag = True 
 		else:	
 			# Fan "Throttled" between Min_speed and max_speed
 			# Simarly for frequency
-			self.freq = (self.throttle*(self.config.max_freq - self.config.min_freq))+self.config.min_freq
-			self.speed = (self.throttle*(self.config.max_speed - self.config.min_speed))+self.config.min_speed
-			self.throttle  = 100 * control.throttle
+			self.freq = (self.throttle*(self.config.max_freq - self.config.min_freq)/100) + self.config.min_freq
+			self.speed = (self.throttle*(self.config.max_speed - self.config.min_speed)/100) + self.config.min_speed
 			self.buffer_increment_flag = True 
 		

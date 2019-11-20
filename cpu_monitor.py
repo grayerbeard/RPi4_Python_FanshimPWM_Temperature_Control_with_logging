@@ -88,7 +88,8 @@ the_end_time = datetime.now()
 last_total = 0
 loop_time = 0
 correction = 4.02
-last_fan_state = False
+# Ensure start right by inc buffer
+last_fan_state = True
 buffer_increment_flag = False
 refresh_time = config.scan_delay + (config.scan_delay/3)
 

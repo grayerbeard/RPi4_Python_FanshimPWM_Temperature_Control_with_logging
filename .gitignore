@@ -1,9 +1,9 @@
 __pycache__\
-log\*.csv
+log\
 old\
 *.html
 *.pyc
 *wd.csv
 log\*.csv
-
+*lg.csv
 

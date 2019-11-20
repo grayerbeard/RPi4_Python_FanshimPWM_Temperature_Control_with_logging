@@ -93,8 +93,6 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	try:
 		# Loop Management and Watchdog
 		loop_start_time = datetime.now()
-		count_for_WD = int(100*(config.scan_count + sub_count))
-		sub_count += 0.001
 		
 		# Control
 		cpu.get_data()
@@ -119,9 +117,12 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu_buffer.pr(control.buffer_increment_flag,0,loop_start_time,refresh_time)
 	
 		# Loop Managemnt and Watchdog
-		config.scan_count += 1
 		if control.buffer_increment_flag:
 			sub_count = 0
+			config.scan_count += 1
+		else:
+			sub_count += 0.001
+		count_for_WD = int(100*(config.scan_count + sub_count))
 		wd.put_wd(count_for_WD,"ok")
 		loop_end_time = datetime.now()
 		loop_time = (loop_end_time - loop_start_time).total_seconds()

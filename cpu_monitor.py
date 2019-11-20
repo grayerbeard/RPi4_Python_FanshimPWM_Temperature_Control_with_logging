@@ -72,7 +72,7 @@ config.exit_flag = False
 config.new_config_wanted = False
 config.scan_count = 0
 
-headings = ["Count","Cpu Load","Temp","Throttle","Fan Speed","Cpu Freq","Cpu Mem","Cpu Disk","Times","Msg"]
+headings = ["Count","Cpu Load","Temp","Throttle","Fan Speed","Fan Freq","Cpu Freq","Cpu Mem","Cpu Disk","Loop Times"]
 cpu_buffer = class_text_buffer(headings,config)
 
 #Fan shim related
@@ -109,11 +109,11 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
 		cpu_buffer.line_values[3] = str(round(control.throttle,1))+ "%"
 		cpu_buffer.line_values[4] = str(round(control.speed,1))+ "%"
-		cpu_buffer.line_values[5] = str(cpu.cpu_freq.current/1000) + "GHz"
-		cpu_buffer.line_values[6] = str(cpu.cpu_mem) + "%"
-		cpu_buffer.line_values[7] = str(cpu.cpu_disk) + "%"
-		cpu_buffer.line_values[8] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
-		cpu_buffer.line_values[9] = str(int(c_or_1)) + str(int(c_or_2)) + str(int(c_or_3)) + str(int(c_or_4))
+		cpu_buffer.line_values[5] = str(round(control.freq,1))+ "Hz"
+		cpu_buffer.line_values[6] = str(cpu.cpu_freq.current/1000) + "GHz"
+		cpu_buffer.line_values[7] = str(cpu.cpu_mem) + "%"
+		cpu_buffer.line_values[8] = str(cpu.cpu_disk) + "%"
+		cpu_buffer.line_values[9] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
 	
 		refresh_time = config.scan_delay + (config.scan_delay/3)
 		cpu_buffer.pr(control.buffer_increment_flag,0,loop_start_time,refresh_time)

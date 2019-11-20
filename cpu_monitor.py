@@ -92,9 +92,6 @@ refresh_time = config.scan_delay + (config.scan_delay/3)
 
 while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	try:
-		# Logging
-		cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
-		
 		# Loop Management and Watchdog
 		loop_start_time = datetime.now()
 		
@@ -105,6 +102,10 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu.control_fan()
 		cpu.update_led_temperature(cpu.temp,config.max_temp,config.min_temp,config.brightness)
 		
+		# Logging;  log count before incrementing
+		cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
+		
+		# Increment Log Count
 		if control.buffer_increment_flag:
 			sub_count = 0.001
 			config.scan_count += 1

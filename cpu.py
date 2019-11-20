@@ -45,8 +45,6 @@ class class_cpu:  # For monitoring R Pi 4 Cpu
 	def get_data(self):
 		self.temp = float(self.get_cpu_temp.temperature)
 		self.cpu_load = psutil.cpu_percent(interval=1)
-		self.total_for_average_power += self.cpu_load
-		self.averageing_count += 1
 		self.cpu_mem = psutil.virtual_memory().percent
 		self.cpu_disk = psutil.disk_usage('/').percent
 		self.cpu_freq = psutil.cpu_freq()

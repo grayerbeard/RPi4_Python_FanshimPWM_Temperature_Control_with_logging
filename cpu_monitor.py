@@ -80,7 +80,7 @@ plasma.set_clear_on_exit(True)
 plasma.set_light_count(1)
 plasma.set_light(0, 0, 0, 0)
 
-control = class_control()
+control = class_control(config)
 
 # Set The Initial Conditions
 sub_count = 0.001

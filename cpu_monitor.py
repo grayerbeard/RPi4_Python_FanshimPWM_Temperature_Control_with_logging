@@ -174,7 +174,7 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		last_end = the_end_time
 		the_end_time = datetime.now()
 		last_total = (the_end_time - last_end).total_seconds()
-		error = 1000*(last_total - 5)
+		error = 1000*(last_total - config.scan_delay)
 		correction = correction + (0.05*error)
 		#print("Error : ",1000*(last_total - 5),correction)
 	except KeyboardInterrupt:

@@ -45,7 +45,7 @@ class class_config:
 	def __init__(self):
 # Start of items set in config.cfg
 	# Scan
-		self.scan_delay = 5		# delay in seconds between each scan (not incl sensor responce times)
+		self.scan_delay = 10		# delay in seconds between each scan (not incl sensor responce times)
 		self.max_scans = 0			# number of scans to do, set to zero to scan for ever (until type "ctrl C")
 	# Log
 		self.log_directory = "log/"	# where to store log files

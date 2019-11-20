@@ -17,9 +17,6 @@ class class_cpu:  # For monitoring R Pi 4 Cpu
 		self.get_cpu_temp = CPUTemperature() 
 		self.temp = float(self.get_cpu_temp.temperature)
 		self.cpu_load = psutil.cpu_percent(interval=None,percpu=False) # gives average since last call all cpus.
-		self.total_for_average_power = self.cpu_load
-		self.average_load = self.temp
-		self.averageing_count = 1
 		self.cpu_mem = psutil.virtual_memory().percent
 		self.cpu_disk = psutil.disk_usage('/').percent                 
 		self.last_call = datetime.datetime.now()
@@ -53,15 +50,6 @@ class class_cpu:  # For monitoring R Pi 4 Cpu
 		self.cpu_mem = psutil.virtual_memory().percent
 		self.cpu_disk = psutil.disk_usage('/').percent
 		self.cpu_freq = psutil.cpu_freq()
-
-	def calc_averages(self):
-		self.average_load = round(self.total_for_average_power/self.averageing_count,2)
-		self.averageing_count = 0
-		self.total_for_average_power = 0
-
-	def get_av_cpu_load_so_far(self):
-		average_load_so_far = round(self.total_for_average_power/self.averageing_count,2)
-		return ("Now Load : " + str(self.cpu_load) + "  With Average So far : " + str(average_load_so_far))
 
 	def update_led_temperature(self,temp,min_temp,max_temp,brightness):
 		temp = float(temp)

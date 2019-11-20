@@ -112,7 +112,7 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 			sub_count += 0.001
 
 		#Logging
-		cpu_buffer.line_values[1] = str(cpu.average_load) + "%"
+		cpu_buffer.line_values[1] = str(cpu.cpu_load) + "%"
 		cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
 		cpu_buffer.line_values[3] = str(round(control.throttle,1))+ "%"
 		cpu_buffer.line_values[4] = str(round(control.speed,1))+ "%"

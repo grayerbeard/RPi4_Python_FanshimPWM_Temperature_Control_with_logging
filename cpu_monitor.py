@@ -88,9 +88,13 @@ the_end_time = datetime.now()
 last_total = 0
 loop_time = 0
 correction = 4.02
+refresh_time = config.scan_delay + (config.scan_delay/3)
 
 while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	try:
+		# Logging
+		cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
+		
 		# Loop Management and Watchdog
 		loop_start_time = datetime.now()
 		
@@ -100,9 +104,14 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu.set_pwm_control_fan(control.freq,control.speed)
 		cpu.control_fan()
 		cpu.update_led_temperature(cpu.temp,config.max_temp,config.min_temp,config.brightness)
-	
-		# Logging
-		cpu_buffer.line_values[0] = str(round(config.scan_count + sub_count,3))
+		
+		if control.buffer_increment_flag:
+			sub_count = 0.001
+			config.scan_count += 1
+		else:
+			sub_count += 0.001
+
+		#Logging
 		cpu_buffer.line_values[1] = str(cpu.average_load) + "%"
 		cpu_buffer.line_values[2] = str(round(cpu.temp,2) ) + "C"
 		cpu_buffer.line_values[3] = str(round(control.throttle,1))+ "%"
@@ -113,16 +122,10 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu_buffer.line_values[8] = str(cpu.cpu_disk) + "%"
 		cpu_buffer.line_values[9] = str(round(last_total,6)) +"s/" + str(round(loop_time,6)) +"s"
 		cpu_buffer.line_values[10] = str(control.buffer_increment_flag)
-	
-		refresh_time = config.scan_delay + (config.scan_delay/3)
 		cpu_buffer.pr(control.buffer_increment_flag,0,loop_start_time,refresh_time)
 	
 		# Loop Managemnt and Watchdog
-		if control.buffer_increment_flag:
-			sub_count = 0
-			config.scan_count += 1
-		else:
-			sub_count += 0.001
+
 		count_for_WD = int(100*(config.scan_count + sub_count))
 		wd.put_wd(count_for_WD,"ok")
 		loop_end_time = datetime.now()

@@ -91,7 +91,7 @@ correction = 4.02
 # Ensure start right by inc buffer
 last_fan_state = True
 buffer_increment_flag = False
-refresh_time = config.scan_delay + (config.scan_delay/3)
+refresh_time = 4.2*config.scan_delay
 
 went_off = datetime.now()
 went_on = datetime.now()

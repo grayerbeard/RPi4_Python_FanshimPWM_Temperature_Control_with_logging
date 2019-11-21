@@ -146,14 +146,14 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		if control.fan_on:
 			if not(last_fan_state): # Then was off now on
 				went_on = loop_start_time
-			time_on = round((loop_start_time - went_on).total_seconds(),2)		
+			time_on = round((loop_start_time - went_on).total_seconds(),0) + config.scan_delay	
 			cpu_buffer.line_values[10] = "Fan ON"
 			last_fan_state = True
 			cpu_buffer.line_values[10] = "Fan ON : " + str(time_on)
 		else:
 			if last_fan_state: # Then was on now off
 				went_off = loop_start_time
-			time_off = round((loop_start_time - went_off).total_seconds(),2)
+			time_off = round((loop_start_time - went_off).total_seconds(),0) + config.scan_delay
 			last_fan_state = False
 			cpu_buffer.line_values[10] = "Fan OFF : " + str(time_off)
 			

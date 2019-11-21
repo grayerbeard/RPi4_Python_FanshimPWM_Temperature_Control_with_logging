@@ -142,12 +142,6 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		else:
 			print("wierd error")
 			sys_exit()
-			
-			
-			last_end = the_end_time
-		the_end_time = datetime.now()
-last_total = (the_end_time - last_end).total_seconds()	
-
 
 		if control.fan_on:
 			if not(last_fan_state): # Then was off now on

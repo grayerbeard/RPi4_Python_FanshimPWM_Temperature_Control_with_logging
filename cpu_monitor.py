@@ -93,6 +93,11 @@ last_fan_state = True
 buffer_increment_flag = False
 refresh_time = config.scan_delay + (config.scan_delay/3)
 
+went_off = datetime.now()
+went_on = datetime.now()
+time_on = 0
+time_off = 0
+
 while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	try:
 		# Loop Management and Watchdog
@@ -138,12 +143,25 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 			print("wierd error")
 			sys_exit()
 			
+			
+			last_end = the_end_time
+		the_end_time = datetime.now()
+last_total = (the_end_time - last_end).total_seconds()	
+
+
 		if control.fan_on:
+			if not(last_fan_state): # Then was off now on
+				went_on = loop_start_time
+			time_on = round((loop_start_time - went_on).total_seconds(),2)		
 			cpu_buffer.line_values[10] = "Fan ON"
 			last_fan_state = True
+			cpu_buffer.line_values[10] = "Fan ON : " + str(time_on)
 		else:
-			cpu_buffer.line_values[10] = "Fan OFF"
+			if last_fan_state: # Then was on now off
+				went_off = loop_start_time
+			time_off = round((loop_start_time - went_off).total_seconds(),2)
 			last_fan_state = False
+			cpu_buffer.line_values[10] = "Fan OFF : " + str(time_off)
 			
 		cpu_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
 	

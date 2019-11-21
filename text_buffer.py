@@ -61,6 +61,7 @@ class class_text_buffer(object):
 		self.__html_filename_save_as = config.prog_path + self.__html_filename
 		self.__www_filename = config.local_dir_www +  self.__html_filename  
 		self.__ftp_creds = config.ftp_creds_filename
+		self.__send_html_count = 0
 		if self.__config.log_buffer_flag:
 			self.__send_log_count = 0
 			self.__log = class_buffer_log(config)
@@ -194,10 +195,14 @@ class class_text_buffer(object):
 		copyfile(self.__html_filename, self.__www_filename)
 		
 		# To debug FTP change end of following line to " = True"
-		FTP_dbug_flag = False
-		ftp_result = send_by_ftp(FTP_dbug_flag,self.__ftp_creds, self.__html_filename_save_as, self.__html_filename,"",self.__config.ftp_timeout)
-		for pres_ind in range(0,len(ftp_result)):
-			pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])
+		if self.__send_html_count >= 3:
+			FTP_dbug_flag = False
+			ftp_result = send_by_ftp(FTP_dbug_flag,self.__ftp_creds, self.__html_filename_save_as, self.__html_filename,"",self.__config.ftp_timeout)
+			for pres_ind in range(0,len(ftp_result)):
+				pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])
+			self.__send_html_count = 0
+		else:
+			self.__send_html_count += 1
 		return
 
 

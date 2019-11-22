@@ -48,8 +48,8 @@ class class_control:  # for calc of freq and speed
 			self.fan_on = False 
 		elif self.throttle > 100 :
 			# Fan at Max
-			freq = self.config.max_freq
-			speed = self.config.max_speed
+			self.freq = self.config.max_freq
+			self.speed = self.config.max_speed
 			self.throttle  = 100
 			self.fan_on = True 
 		else:	

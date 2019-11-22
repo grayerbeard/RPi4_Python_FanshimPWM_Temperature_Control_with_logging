@@ -63,7 +63,6 @@ end_time = datetime.now()
 last_total = 0
 loop_time = 0
 correction = 4.02
-print("config.scan_delay",config.scan_delay)
 while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 	try:
 		loop_start_time = datetime.now()

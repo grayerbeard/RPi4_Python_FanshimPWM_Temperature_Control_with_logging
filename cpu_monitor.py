@@ -92,8 +92,8 @@ correction = 4.02
 last_fan_state = True
 buffer_increment_flag = False
 refresh_time = 4.2*config.scan_delay
-print("refresh_time : ", refresh_time)
-sys_exit()
+#print("refresh_time : ", refresh_time)
+#sys_exit()
 
 went_off = datetime.now()
 went_on = datetime.now()

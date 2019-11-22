@@ -148,7 +148,6 @@ class class_text_buffer(object):
 		file_start = file_start + """ />
 </head>
 <caption>Rotating Buffer Display</caption>"""
-		print("refresh_interval : ",refresh_interval)
 		tbl_start = """ <p>
 <table style="float: left;" border="1">
 <tbody>"""

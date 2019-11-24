@@ -1,6 +1,11 @@
 # RPi4_Python_FanshimPWM_Temperature_Control_with_logging
 R Pi 4 with Fanshim Cooling controlled with PWM, temperature control suitable for smartplugs or SCR with PWM and with temperature logging and remote monitoring.  All separate functions split among classes.
 
+to clone just the pwm_fanshim branch use this command
+
+ git clone https://github.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Control_with_logging.git -b pwm_fanshim --single-branch /home/pi/fanshim/
+
+
 following items in this repository are working OK
 <ul>
 <li>Common Use classes</li>

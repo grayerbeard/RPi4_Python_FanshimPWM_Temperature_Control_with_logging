@@ -1,5 +1,12 @@
 # R Pi 4 Python Fanshim PWM_Temperature Control with logging  BRANCH: Just PWM Fanshim
 
+to clone just this branch use this command in the terminal
+
+to clone just the pwm_fanshim branch use this command
+
+ git clone https://github.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Control_with_logging.git -b pwm_fanshim --single-branch /home/pi/fanshim/
+
+
 R Pi 4 with Fanshim Cooling controlled with PWM.  Nice quiet Fan Cooling normally never runs fan at more than 75% speed which is very much quieter.
 
 Everying in the Branch Tested for a prolonged period but this brandch only set up on November 24th 2019 so it will take a day or two to be sure the branch is working OK.

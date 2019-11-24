@@ -27,13 +27,9 @@ from config import class_config
 from text_buffer import class_text_buffer
 from cpu import class_cpu
 from utility import fileexists,pr,make_time_text
-from wd import class_wd
 from algorithm_01 import class_control
 
 cpu = class_cpu()
-wd = class_wd("cpu_wd")
-my_pid = getpid()
-init_printout = ["My PID is : " + str(my_pid)]
 
 #Set up Config file and read it in if present
 config = class_config()
@@ -160,9 +156,6 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		cpu_buffer.pr(buffer_increment_flag,0,loop_start_time,refresh_time)
 	
 		# Loop Managemnt and Watchdog
-
-		count_for_WD = int(100*(config.scan_count + sub_count))
-		wd.put_wd(count_for_WD,"ok")
 		loop_end_time = datetime.now()
 		loop_time = (loop_end_time - loop_start_time).total_seconds()
 	

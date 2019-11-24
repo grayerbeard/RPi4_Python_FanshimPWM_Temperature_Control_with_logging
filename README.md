@@ -1,9 +1,9 @@
-# R Pi 4 Python Fanshim PWM_Temperature_Control_with_logging  BRANCH: Just PWM Fanshim
+# R Pi 4 Python Fanshim PWM_Temperature Control with logging  BRANCH: Just PWM Fanshim
 
-R Pi 4 with Fanshim Cooling controlled with PWM.  Nice quiet Fan Cooling normally never runs fan at more than 75% speens which is very quiet.
+R Pi 4 with Fanshim Cooling controlled with PWM.  Nice quiet Fan Cooling normally never runs fan at more than 75% speed which is very much quieter.
 
 Everying in the Branch Tested for a prolonged period but this brandch only set up on November 24th 2019 so it will take a day or two to be sure the branch is working OK.
-Note that the code is started with the ./tmux_start.sh command.   
+Note that the code is started with the ./tmux_start.sh command from the fanshim directory.   
 This can be triggered automatically on startup with the following added to  /etc/rc.local
 
 sudo -u pi bash /home/pi/fanshim/tmux_start.sh &

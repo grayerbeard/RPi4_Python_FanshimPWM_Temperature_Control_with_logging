@@ -34,23 +34,23 @@ cpu = class_cpu()
 #Set up Config file and read it in if present
 config = class_config()
 if fileexists(config.config_filename):		
-	init_printout.append("Config taken from file")
 	print( "will try to read Config File : " ,config.config_filename)
 	config.read_file() # overwrites from file
 else : # no file so my_sensorneeds to be written
 	config.write_file()
-	init_printout.append("New Config File Made with default values, you probably need to edit it")
+	print("New Config File Made with default values, you probably need to edit it")
 	
+# Following could be used to copy html files when prog run again before get overwritten
 # make a random number string  between 1 and a thousand use to copy html files
-random_text_number = str(random_randint(1,1001))
-try:
-	print("start copy using: ", random_text_number)
-	config.status_html_filename = ""
-	config.log_html_filename
-	copyfile("cpu_log.html", "old/" + "cpu_log" + random_text_number + ".html")
-	print("finish copy")
-except:
-	print("Cannot copy old files")
+#random_text_number = str(random_randint(1,1001))
+#try:
+#	print("start copy using: ", random_text_number)
+#	config.status_html_filename = ""
+#	config.log_html_filename
+#	copyfile("cpu_log.html", "old/" + "cpu_log" + random_text_number + ".html")
+#	print("finish copy")
+#except:
+#	print("Cannot copy old files")
 
 ############################  each below needs o be check if needed or if could be moved into config.cfg		
 config.log_on = False

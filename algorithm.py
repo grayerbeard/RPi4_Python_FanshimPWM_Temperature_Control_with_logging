@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# This file is part of IvPID.
+# This file is part of pwm_fanshim.
 # Copyright (C) 2015 Ivmech Mechatronics Ltd. <bilgi@ivmech.com>
 #
 # This is free software: you can redistribute it and/or modify
@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# title           :algorithm_01.py
-# description     :first try control for R Pi Cooling Fan
+# title           :algorithm.py
+# description     :pwm control for R Pi Cooling Fan
 # author          :David Torrens
 # start date      :2019 11 20
 # version         :0.1

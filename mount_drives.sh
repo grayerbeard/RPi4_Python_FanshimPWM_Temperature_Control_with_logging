@@ -1,1 +1,0 @@
-sudo mount -a 

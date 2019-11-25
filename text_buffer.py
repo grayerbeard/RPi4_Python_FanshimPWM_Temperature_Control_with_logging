@@ -99,9 +99,13 @@ class class_text_buffer(object):
 		#print("Buffer updated and log buffer flag is : ",self.__config.log_buffer_flag)
 		if self.__config.log_buffer_flag:
 			self.__log.log_to_file(self.__headings,values)
-			self.__log.copy_log_to_www(False)
+			if fileexists(self.__config.local_dir_www)
+				try:
+					self.__log.copy_log_to_www(False)
+				except:
+					print("Failed to copy log file to: ",self.__config.local_dir_www)
 			#send log file to website configevery ten scans
-			if self.__send_log_count > 10:
+			if self.__send_log_count > 10 and fileexists(self.__ftp_creds):
 				#print("Sending log file by FTP")
 				self.__log.send_log_by_ftp(False,self.__config.log_directory,self.__config.ftp_timeout)
 				self.__send_log_count = 0

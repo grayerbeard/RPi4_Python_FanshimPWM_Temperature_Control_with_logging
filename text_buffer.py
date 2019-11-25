@@ -68,7 +68,7 @@ class class_text_buffer(object):
 		self.__send_html_count = 0
 		if self.__config.log_buffer_flag:
 			self.__send_log_count = 0
-			self.__log = class_buffer_log(config)
+			self.__log_filename = self.__log = class_buffer_log(config)
 		
 	def size(self):
 		return self.__config.text_buffer_length
@@ -187,7 +187,14 @@ class class_text_buffer(object):
 		self.update_buffer(make_values,appnd,ref)
 		with open(self.__html_filename,'w') as htmlfile:
 			htmlfile.write(file_start)
-			htmlfile.write("<p>" + self.__html_filename + " : " + make_time_text(datetime.now())  + "</p>\n<p>")
+			if self.__config.log_buffer_flag:
+				htmlfile.write('<p>' + self.__html_filename + ' : ' + 
+					make_time_text(datetime.now())  + 
+					'<a href= "' + self.__config.log_directory + self.__log_filename + '"' + 
+					'target="_blank">View CSV Log File</a><p>\n")
+			else:
+				htmlfile.write("<p>" + self.__html_filename + " : " + 
+					make_time_text(datetime.now())  + "</p>\n<p>")
 			htmlfile.write(tbl_start + tbl_start_line)
 			for ind in range(0,len(self.__headings)):
 				htmlfile.write(tbl_start_col + self.__headings[ind] + tbl_end_col)

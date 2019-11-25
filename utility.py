@@ -158,5 +158,6 @@ def send_by_ftp(dbug_send_ftp,ftp_cred,send_filename, save_as_filename, ftp_remo
 	except:
 		pr(dbug_send_ftp,here,"Failed FTP",save_as_filename)
 		result.append("Error Trying To Send " + send_filename + " file by FTP")
+		print("Error Trying To Send " + send_filename + " file by FTP", "Try setting dbug flag to investigate")
 	return(result)
 

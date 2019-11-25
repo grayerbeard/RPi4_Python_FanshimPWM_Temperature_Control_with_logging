@@ -74,7 +74,7 @@ class class_buffer_log:
 	def send_log_by_ftp(self,FTP_dbug_flag,remote_log_dir,ftp_timeout):
 		here = "bffr_log_log_by_ftp"
 		ftp_result = send_by_ftp(FTP_dbug_flag,self.__config.ftp_creds_filename, self.__log_filename_save_as, \
-			self.__log_filename,remote_log_dir,ftp_timeout)
+			self.log_filename,remote_log_dir,ftp_timeout)
 		for pres_ind in range(0,len(ftp_result)):
 			pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])
 		if self.__send_plain_count < 0 :

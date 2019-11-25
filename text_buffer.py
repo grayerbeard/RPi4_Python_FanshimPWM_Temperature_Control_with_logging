@@ -34,7 +34,7 @@ import os
 # None
 
 # Local application imports
-from utility import pr,make_time_text,send_by_ftp
+from utility import pr,make_time_text,send_by_ftp,fileexists
 from buffer_log import class_buffer_log
 
 class class_text_buffer(object):
@@ -196,17 +196,23 @@ class class_text_buffer(object):
 				htmlfile.write(tbl_end_line)
 			htmlfile.write(tbl_end)
 			htmlfile.write(file_end)
-		copyfile(self.__html_filename, self.__www_filename)
 		
-		# To debug FTP change end of following line to " = True"
-		if self.__send_html_count >= 3:
-			FTP_dbug_flag = False
-			ftp_result = send_by_ftp(FTP_dbug_flag,self.__ftp_creds, self.__html_filename_save_as, self.__html_filename,"",self.__config.ftp_timeout)
-			for pres_ind in range(0,len(ftp_result)):
-				pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])
-			self.__send_html_count = 0
-		else:
-			self.__send_html_count += 1
+		try:
+			copyfile(self.__html_filename, self.__www_filename)
+		except:
+			print("Not able to copy : ",self.__html_filename, " to ", self.__www_filename)
+		
+		
+		if fileexists(self.__ftp_creds):
+			if self.__send_html_count >= 3:
+				# To debug FTP change end of following line to " = True"   !!!!!!!!!!!! 
+				FTP_dbug_flag = False
+				ftp_result = send_by_ftp(FTP_dbug_flag,self.__ftp_creds, self.__html_filename_save_as, self.__html_filename,"",self.__config.ftp_timeout)
+				for pres_ind in range(0,len(ftp_result)):
+					pr(FTP_dbug_flag,here, str(pres_ind) + " : ", ftp_result[pres_ind])
+				self.__send_html_count = 0
+			else:
+				self.__send_html_count += 1
 		return
 
 

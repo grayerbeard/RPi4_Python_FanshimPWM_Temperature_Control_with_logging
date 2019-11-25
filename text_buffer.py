@@ -68,7 +68,7 @@ class class_text_buffer(object):
 		self.__send_html_count = 0
 		if self.__config.log_buffer_flag:
 			self.__send_log_count = 0
-			self.__log_filename = self.__log = class_buffer_log(config)
+			self.__log = class_buffer_log(config)
 		
 	def size(self):
 		return self.__config.text_buffer_length
@@ -188,10 +188,10 @@ class class_text_buffer(object):
 		with open(self.__html_filename,'w') as htmlfile:
 			htmlfile.write(file_start)
 			if self.__config.log_buffer_flag:
-				print('<p>' + self.__html_filename + ' : ' + make_time_text(datetime.now())  + 	'   <a href= "' + self.__config.log_directory + self.__log_filename + '" target="_blank">View CSV Log File</a></p>\n<p>')
+				print('<p>' + self.__html_filename + ' : ' + make_time_text(datetime.now())  + 	'   <a href= "' + self.__config.log_directory + self.__log.log_filename + '" target="_blank">View CSV Log File</a></p>\n<p>')
 				htmlfile.write('<p>' + self.__html_filename + ' : ' + 
 					make_time_text(datetime.now())  + 
-					'<a href= "' + self.__config.log_directory + self.__log_filename + 
+					'<a href= "' + self.__config.log_directory + self.__log.log_filename + 
 					'" target="_blank"> View CSV Log File </a></p>\n<p>')
 			else:
 				htmlfile.write("<p>" + self.__html_filename + " : " + 

@@ -49,10 +49,10 @@ class class_buffer_log:
 		self.__config = config
 		starttime = datetime.now()
 		timestamp = make_time_text(starttime)
-		self.__log_filename = timestamp + "_" + self.__config.prog_name + "_" + "lg.csv"
+		self.log_filename = timestamp + "_" + self.__config.prog_name + "_" + "lg.csv"
 		print(self.__config.prog_path,self.__config.log_directory)
-		self.__log_filename_save_as = self.__config.prog_path + self.__config.log_directory + self.__log_filename
-		self.__local_www_log_filename = self.__config.local_dir_www + self.__config.log_directory + self.__log_filename
+		self.__log_filename_save_as = self.__config.prog_path + self.__config.log_directory + self.log_filename
+		self.__local_www_log_filename = self.__config.local_dir_www + self.__config.log_directory + self.log_filename
 		return self.__log_filename
 
 	def log_to_file(self,log_headings,log_values):

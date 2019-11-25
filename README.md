@@ -74,6 +74,4 @@ to exit enter
 
 "ctrl-b" then "d".
 
-My dvelopment repository on GitHub at github.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Control_with_logging with just the fanshim code in the "pwm_fanshim branch"
-
 Any issues email me at feedback@smalle.uk or look on https://www.smalle.uk/r-pi-4-blog

@@ -99,7 +99,7 @@ class class_text_buffer(object):
 		#print("Buffer updated and log buffer flag is : ",self.__config.log_buffer_flag)
 		if self.__config.log_buffer_flag:
 			self.__log.log_to_file(self.__headings,values)
-			if fileexists(self.__config.local_dir_www)
+			if fileexists(self.__config.local_dir_www):
 				try:
 					self.__log.copy_log_to_www(False)
 				except:

@@ -136,7 +136,7 @@ or open the csv log file in
 /var/www/html/log or 
 '''
 
-via the link at the top of the html file to link to this runs CSV file (csv files are retained until deleted wheras html files get overwritten)
+via the link at the top of the html file that link to the CSV log file (csv files are retained until deleted whereas html files get overwritten; so the csv file is the best way to review long term behavior.
 
 or this command to open a "tmux window" to observe the code's print out
 

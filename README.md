@@ -8,7 +8,7 @@ To install the code that is controlling the fan on my R Pi 4 and producing the d
 git clone https\://github\.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Control_with_logging\.git -b pwm_fanshim --single-branch /home/pi/fanshim/
 '''
 
-That will create the folder "fanshim" (dont create it before) and install the code as a local git repository.
+That will create the folder "fanshim" (dont create it before) and install the code as a local git repository by extracting just this branch.
 
 ## Install Tmux
 
@@ -100,7 +100,7 @@ In tmux window enter "ctrl C", in fanshim directory enter "./tmux_stop.sh", or e
 
 ## GitHub
 
-My development repository is on GitHub at github.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Control_with_logging with just the fanshim code in the "pwm_fanshim branch"
+Note that this is a branch of a github directory where I develope variations of this sort of control function for cooling and heating with logging and remote monitoring.  e.g. room heating, sauna stove, central heating monitoring etc.  
 
 ## Help
 

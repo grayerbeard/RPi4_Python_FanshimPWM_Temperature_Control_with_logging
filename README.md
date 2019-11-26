@@ -119,6 +119,7 @@ Note that this is a branch of a github directory where I am developing variation
 A few weeks ago I decided to start getting the code a bit more proffessional looking and use github so I restarted by building up all the classes one at a time and improving them by gradually adding more applications with the aim of making sure code is reusable in the usual aim of good "Software Engineering" principals that I first studied around 35 years ago!.
 
 I make frequest use of www.dataplicity.com to sort out issues remotely.  Great fun when someone is visiting the house and they want the Sauna Stove at a warmer temperature and I am in anouther country.  Or the Community Building workshop needs heating at a different time and I am away on holiday.   see other articles at https://www.smalle.uk/r-pi-4-blog.
+Then using dataplicity to open a terminal on your R Pi one can use the tmux commands outlined above to take a look at what the code is doing.  Use GitHub to edit the code (once its in your own repository) and use "git pull" to put any revised code into the R Pi even when you are far from home.   Note that its no good setting code running using SSH or dataplicity as then when the link is closed the code stops.  That is the joy of using tmux.
 
 ## Help
 

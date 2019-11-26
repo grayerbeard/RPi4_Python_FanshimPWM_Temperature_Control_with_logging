@@ -1,6 +1,6 @@
 # R Pi 4 Python Fanshim PWM_Temperature Control with logging  BRANCH: Just PWM Fanshim
 
-#Get code
+## Get code
 
 To install the code that is controlling the fan on my R Pi 4 and producing the data below enter this command in the terminal:
 
@@ -8,7 +8,7 @@ git clone https://github.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Cont
 
 That will create the folder "fanshim" (dont create it before) and install the code.
 
-#Install Tmux
+## Install Tmux
 
 Then install "TMUX" using
 
@@ -16,13 +16,13 @@ sudo apt-get install tmux
 
 (For info about tmux commands etc see mux-terminal-multiplexer-for-raspberry-pi or I prefer danielmiessler.com/study/tmux or many otherers if you google "tmux tutorial")
 
-#Install Stress Testing
+## Install Stress Testing
 
 Then install the stress testing using the instructions at core-electronics.com.au/tutorials/stress-testing-your-raspberry-pi.html
 
 (I have set up a bash command tmux_stress.sh to run the stress test see below)
 
-#Edit rc.local to Start Code Automatically at Start Up
+## Edit rc.local to Start Code Automatically at Start Up
 
 Then edit "/etc/rc.local" using the command
 
@@ -32,7 +32,7 @@ and add
 
 sudo -u pi bash /home/pi/fanshim/tmux_start.sh &
 
-#If want to use FTP to Send Files Edit the FTP_Creds File
+## If want to use FTP to Send Files Edit the FTP_Creds File
 
 To use FTP to a website edit "ftp_creds PATTERN.csv" and put it in a location that is matched by the location in config.cfg. (By default that is "/home/pi/ftp_creds/ftp_creds.csv")
 
@@ -42,7 +42,7 @@ Similarly if the directory "/var/www/html/" does not exist because web server is
 
 (You can set up server with"sudo apt install nginx" then "sudo chown -R pi /var/www/html/". )
 
-#Testing
+## Testing
 
 Then go to that "fanshim" folder to start testing
 
@@ -58,13 +58,13 @@ then enter
 
 To do a stress test.
 
-#Tweaking
+## Tweaking
 
 Then you can try editing the parametsr in config.cfg to see if you get get the control more to your liking.
 
 Then do a reboot and check the code runs automatically at start up.
 
-#Checking up on Running Code
+## Checking up on Running Code
 
 To check after start up to see if its still running enter
 
@@ -92,12 +92,14 @@ to exit that tmux window enter
 
 "ctrl-b" then "d".
 
-#To Stop
+## To Stop
 
 In tmux window enter "ctrl C", in fanshim directory enter "./tmux_stop.sh", or enter "tmux kill-session -t fanshim"
 
-#GitHub
+## GitHub
 
 My development repository is on GitHub at github.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Control_with_logging with just the fanshim code in the "pwm_fanshim branch"
+
+## Help
 
 Any issues email me at feedback@smalle.uk or look on https://www.smalle.uk/r-pi-4-blog

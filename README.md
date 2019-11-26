@@ -16,13 +16,24 @@ The use of FTP to a remote site is optional and if not set up will be bypassed w
 
 Then install "TMUX" using
 
+'''
 sudo apt-get install tmux
+'''
 
-(For info about tmux commands etc see mux-terminal-multiplexer-for-raspberry-pi or I prefer danielmiessler.com/study/tmux or many otherers if you google "tmux tutorial")
+(For info about tmux commands etc see
+'''
+https://iotpoint.wordpress.com/2016/11/15/tmux-terminal-multiplexer-for-raspberry-pi/ 
+or I prefer
+https://danielmiessler.com/study/tmux/ 
+'''
+or many otherer places if you google for  "tmux tutorial"
 
 ## Install Stress Testing
 
-Then install the stress testing using the instructions at core-electronics.com.au/tutorials/stress-testing-your-raspberry-pi.html
+Then install the stress testing using the instructions at 
+'''
+https://core-electronics.com.au/tutorials/stress-testing-your-raspberry-pi.html
+'''
 
 (I have set up a bash command tmux_stress.sh to run the stress test see below)
 
@@ -30,11 +41,15 @@ Then install the stress testing using the instructions at core-electronics.com.a
 
 Then edit "/etc/rc.local" using the command
 
+'''
 sudo nano /etc/rc.local
+'''
 
 and add
 
+'''
 sudo -u pi bash /home/pi/fanshim/tmux_start.sh &
+'''
 
 ## If want to use FTP to Send Files Edit the FTP_Creds File
 
@@ -52,15 +67,35 @@ Then go to that "fanshim" folder to start testing
 
 Type
 
+'''
 python3 fanshim.py
+'''
 
 to check code working
 
 then enter
 
+'''
 ./tmux_stress.sh
+'''
+
+(Note the full stop at start of above)
 
 To do a stress test.
+
+Then you can check the normal way of starting with 
+
+'''
+./tmux_start
+'''
+
+(Note the full stop at start of above)
+
+Then you can check running with 
+
+'''
+tmux ls
+'''
 
 ## Tweaking
 
@@ -72,13 +107,17 @@ Then do a reboot and check the code runs automatically at start up.
 
 To check after start up to see if its still running enter
 
+'''
 tmux ls
+'''
 
 it should show fanshim is running.
 
 or open the html file
 
+'''
 fanshim_log.html
+'''
 
 in either of these locations : 
 /home/pi/fanshim,

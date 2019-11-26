@@ -5,7 +5,7 @@
 To install the code that is controlling the fan on my R Pi 4 and producing the data below enter this command in the terminal:
 
 '''
-git clone https\://\github\.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Control_with_logging\.git -b pwm_fanshim --single-branch /home/pi/fanshim/
+git clone https\://github\.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Control_with_logging\.git -b pwm_fanshim --single-branch /home/pi/fanshim/
 '''
 
 That will create the folder "fanshim" (dont create it before) and install the code as a local git repository.

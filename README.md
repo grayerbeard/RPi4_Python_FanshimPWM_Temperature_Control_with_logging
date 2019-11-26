@@ -84,9 +84,8 @@ in either of these locations :
 from  your network , from any device using a browser and the R Pis IP addressvso e.g. 192.168.0.101/fanshim_log.html,
 remote web site as shown on this page where (I use an iframe), this is the html used at the bottom of this page which is created using:
 
-'''html
-<p><iframe src="https://www.ftp4rpi.smalle.uk/house/fanshim_log.html" frameborder="0" width="1100" height="1000" style="float: left;"></iframe></p>
-<p style="text-align: center;">&nbsp;</p>
+'''
+\<p\>\<iframe src="https\:\/\/www\.ftp4rpi\.smalle\.uk/house/fanshim_log\.html" frameborder="0" width="1100" height="1000" style="float: left;"\>\</iframe\>\</p\>
 '''
 
 or the csv log file iin /home/pi/fanshim/log or  /var/www/html/log or via the link at the top of the html file

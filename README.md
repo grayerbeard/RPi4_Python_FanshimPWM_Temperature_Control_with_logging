@@ -88,15 +88,26 @@ remote web site as shown on this page where (I use an iframe), this is the html 
 \<p\>\<iframe src="https\:\/\/www\.ftp4rpi\.smalle\.uk/house/fanshim_log\.html" frameborder="0" width="1100" height="1000" style="float: left;"\>\</iframe\>\</p\>
 '''
 
-or the csv log file iin /home/pi/fanshim/log or  /var/www/html/log or via the link at the top of the html file
+or open the csv log file in 
+
+'''
+/home/pi/fanshim/log or  
+/var/www/html/log or 
+'''
+
+via the link at the top of the html file
 
 or this command to open a "tmux window" to observe the code's print out
 
+'''
 tmux a -t fanshim
+'''
 
 to exit that tmux window enter
 
-"ctrl-b" then "d".
+'''
+"ctrl-b" then "d"
+'''
 
 ## To Stop
 
@@ -104,7 +115,10 @@ In tmux window enter "ctrl C", in fanshim directory enter "./tmux_stop.sh", or e
 
 ## GitHub
 
-Note that this is a branch of a github directory where I develope variations of this sort of control function for cooling and heating with logging and remote monitoring.  e.g. room heating, sauna stove, central heating monitoring etc.  
+Note that this is a branch of a github directory where I am developing variations of this sort of control function for cooling and heating with logging and remote monitoring.  An earlier version ran a heating with fan heaters in a community workshop for over two years.  e.g. room heating, sauna stove, central heating monitoring etc.  
+A few weeks ago I decided to start getting the code a bit more proffessional looking and use github so I restarted by building up all the classes one at a time and improving them by gradually adding more applications with the aim of making sure code is reusable in the usual aim of good "Software Engineering" principals that I first studied around 35 years ago!.
+
+I make frequest use of www.dataplicity.com to sort out issues remotely.  Great fun when someone is visiting the house and they want the Sauna Stove at a warmer temperature and I am in anouther country.  Or the Community Building workshop needs heating at a different time and I am away on holiday.   see other articles at https://www.smalle.uk/r-pi-4-blog.
 
 ## Help
 

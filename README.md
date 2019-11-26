@@ -86,7 +86,7 @@ To do a stress test.
 Then you can check the normal way of starting with 
 
 '''
-./tmux_start
+./tmux_start.sh
 '''
 
 (Note the full stop at start of above)
@@ -154,13 +154,16 @@ to exit that tmux window enter
 
 In tmux window enter "ctrl C", in fanshim directory enter "./tmux_stop.sh", or enter "tmux kill-session -t fanshim"
 
-## GitHub
+## About using GitHub with Dataplicity 
 
-Note that this is a branch of a github directory where I am developing variations of this sort of control function for cooling and heating with logging and remote monitoring.  An earlier version ran a heating with fan heaters in a community workshop for over two years.  e.g. room heating, sauna stove, central heating monitoring etc.  
-A few weeks ago I decided to start getting the code a bit more proffessional looking and use github so I restarted by building up all the classes one at a time and improving them by gradually adding more applications with the aim of making sure code is reusable in the usual aim of good "Software Engineering" principals that I first studied around 35 years ago!.
+Note that this is a branch of a github directory where I am developing variations of this sort of control function for cooling and heating with logging and remote monitoring, but this branch only has what is needed for fan control with logging.
+I have used the earlier version developed without GitHub (silly me) for heating with remote monitoring of a  community workshop for over two yaers. 
+A few weeks ago I decided to start getting the code a bit more proffessional looking and use github so I restarted by building up all the classes one at a time and improving them by gradually adding more applications with the aim of making sure code is reusable in the usual maner of good "Software Engineering" principals that I first studied around 35 years ago in the days when one did the required exercises by visiting somewhere where you could enter code on a teletype.
 
-I make frequest use of www.dataplicity.com to sort out issues remotely.  Great fun when someone is visiting the house and they want the Sauna Stove at a warmer temperature and I am in anouther country.  Or the Community Building workshop needs heating at a different time and I am away on holiday.   see other articles at https://www.smalle.uk/r-pi-4-blog.
-Then using dataplicity to open a terminal on your R Pi one can use the tmux commands outlined above to take a look at what the code is doing.  Use GitHub to edit the code (once its in your own repository) and use "git pull" to put any revised code into the R Pi even when you are far from home.   Note that its no good setting code running using SSH or dataplicity as then when the link is closed the code stops.  That is the joy of using tmux.
+I make frequest use of www.dataplicity.com to sort out issues remotely.  Great fun when someone is visiting the house and they want the Sauna Stove at a warmer temperature and I am in anouther country.  Or the Community Building workshop needs heating at a different time and I am away on holiday.   See other articles at https://www.smalle.uk/r-pi-4-blog for how I set that up.
+
+I use dataplicity to open a terminal on my R Pi so can then use the tmux commands outlined above to take a look at what the code is doing. I have tried othet methods but I find it best to use GitHub to edit the code (which you could do once its in your own repository) and I then use "git pull" to put any revised code from GitHub into the R Pi, this can then work even when you are far from home.
+Note that its no good setting code running using SSH or dataplicity terminal direct as then when the link is closed the code stops.  That is the joy of using tmux.  For more info see https://docs.dataplicity.com/docs 
 
 ## Help
 

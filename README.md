@@ -24,7 +24,7 @@ sudo apt-get install tmux
 '''
 https://iotpoint.wordpress.com/2016/11/15/tmux-terminal-multiplexer-for-raspberry-pi/ 
 or I prefer
-https://danielmiessler.com/study/tmux/ 
+https://danielmiessler.com/study/tmux/ and best of all https://docs.dataplicity.com/docs/run-your-scripts-in-background
 '''
 or many otherer places if you google for  "tmux tutorial"
 

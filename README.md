@@ -10,6 +10,8 @@ git clone https\://github\.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Co
 
 That will create the folder "fanshim" (dont create it before) and install the code as a local git repository by extracting just this branch.
 
+The use of FTP to a remote site is optional and if not set up will be bypassed with data just logged locally.  The point of this long term logging is that stress tests dont tell you what is happening under normal use when ideally you want a reasonable temperature maintained with minimal use of the fan.
+
 ## Install Tmux
 
 Then install "TMUX" using
@@ -95,7 +97,7 @@ or open the csv log file in
 /var/www/html/log or 
 '''
 
-via the link at the top of the html file
+via the link at the top of the html file to link to this runs CSV file (csv files are retained until deleted wheras html files get overwritten)
 
 or this command to open a "tmux window" to observe the code's print out
 

@@ -190,7 +190,7 @@ class class_text_buffer(object):
 			if self.__config.log_buffer_flag:
 				htmlfile.write('<p>' + self.__html_filename + ' : ' + 
 					make_time_text(datetime.now())  + '      ' +
-					'<a href= "' + self.__log.log_filename + 
+					'<a href= "' + self.__config.log_directory + self.__log.log_filename + 
 					'" target="_blank"> View CSV Log File </a></p>\n<p>')
 			else:
 				htmlfile.write("<p>" + self.__html_filename + " : " + 

@@ -8,7 +8,7 @@ To install the code that is controlling the fan on my R Pi 4 and producing the d
 git clone https\://github\.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Control_with_logging\.git -b pwm_fanshim --single-branch /home/pi/fanshim/
 '''
 
-That will create the folder "fanshim" (dont create it before) and install the code as a local git repository by extracting just this branch. (Edit /home/pi/fanshim/.git/config to connect to your own repository, see [create-a-repo](https://help.github.com/en/github/getting-started-with-github/create-a-repo)
+That will create the folder "fanshim" (dont create it before) and install the code as a local git repository by extracting just this branch. (Edit /home/pi/fanshim/.git/config to connect to your own repository, see [create-a-repo](https://help.github.com/en/github/getting-started-with-github/create-a-repo))
 
 The use of FTP to a remote site is optional and if no FTP Credential file is set up will be bypassed with data just logged locally.  The point of this long term logging is that stress tests does not tell you what is happening under normal use when ideally you want a reasonable temperature maintained with minimal use of the fan.
 
@@ -26,7 +26,7 @@ sudo apt-get install tmux
 or I prefer
 [Daniel Miessler tmux](https://danielmiessler.com/study/tmux/) and best of all [Dataplicity.com docs Run Your Scripts In Background](https://docs.dataplicity.com/docs/run-your-scripts-in-background)
 '''
-or many otherer places if you google for  "tmux tutorial"
+or many other places if you google for  "tmux tutorial"
 
 ## Install Stress Testing
 
@@ -130,7 +130,7 @@ On my web site I use an iframe to show the file in a Joomla Article; this is the
 
 The HTML file only shows recent data but all data since start up is in a csv log file you can open with a spreadsheet they are in "/home/pi/fanshim/log" and "/var/www/html/log".
 
-There is a link at the top of the html file that link to the CSV log file. The csv files are retained until deleted whereas html files get overwritten; so the csv file is the best way to review long term behavior.
+There is a link at the top of the html file that link to the CSV log file. The csv files are retained until deleted whereas html files get overwritten; so the csv file is the best way to review long term behaviour.
 
 You can us this command to open a "tmux window" to observe the code's print out
 
@@ -155,15 +155,15 @@ In tmux window enter "ctrl C", in fanshim directory enter "./tmux_stop.sh", or e
 ### What else I am up to
 This pwm_fanshim branch is from my github directory where I am developing variations of this sort of control function for cooling and heating with logging and remote monitoring.  This branch only has what is needed for PWM of the fanshim.
 
-I had used the earlier version developed without GitHub (silly me!) for controlling fan heaters using TPLink Smartplugs with remote monitoring of a  community workshop for over two yaers.  I also had a version for PWM control of a Sauna Heater. Soon I will redo these using the same background classes.
+I had used the earlier version developed without GitHub (silly me!) for controlling fan heaters using TPLink Smartplugs with remote monitoring of a  community workshop for over two years.  I also had a version for PWM control of a Sauna Heater. Soon I will redo these using the same background classes.
 
 ### Getting Tidier with GitHub
 
-A few weeks ago I decided to start getting the code a bit more proffessional looking and use github.  So I restarted by redoing the background classes and testing using "test_text_buffer.py".  Then this branch to control the fan came next. In next months will get the Sauna and House Heating versions working again.
+A few weeks ago I decided to start getting the code a bit more professional looking and use github.  So I restarted by redoing the background classes and testing using "test_text_buffer.py".  Then this branch to control the fan came next. In next months will get the Sauna and House Heating versions working again.
 
 ### How I work
 
-I make frequent use of [dataplicity.com](https://www.dataplicity.com) to sort out issues remotely.  Great fun when someone is visiting the house and they want the Sauna Stove at a warmer temperature and I am in anouther country.  Or the Community Building workshop needs heating at a different time and I am away on holiday.   See other articles at [www.smalle.uk/r-pi-4-blog](https://www.smalle.uk/r-pi-4-blog) for how I set that up.
+I make frequent use of [dataplicity.com](https://www.dataplicity.com) to sort out issues remotely.  Great fun when someone is visiting the house and they wanted the Sauna Stove at a warmer temperature and I am in another country.  Or the Community Building workshop needed heating at a different time and I am away on holiday.   See other articles at [www.smalle.uk/r-pi-4-blog](https://www.smalle.uk/r-pi-4-blog) for how I set that up.
 
 I use dataplicity to open a terminal on my R Pi so can then use the tmux commands outlined above to take a look at what the code is doing. I have tried other methods but I find it best to usually use GitHub to edit the code (which you could do once its in your own repository) and I then use "git pull" to put any revised code from GitHub into the R Pi, this can then work even when you are far from home.  Only occasionally do I use geany locally to edit and then "git push" to upload the result because I find the work flow often gets confused.
 

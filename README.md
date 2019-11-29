@@ -2,7 +2,7 @@
 
 ## Get code
 
-To install the code that is controlling the fan on my R Pi 4 and producing the data below ( or  here : https://www.ftp4rpi.smalle.uk/house/fanshim_log.html ) enter this command in the terminal:
+To install the code that is controlling the fan on my R Pi 4 and producing the data below (at the bottom of the page) via this link to [the html file uploaded to my website](https://www.ftp4rpi.smalle.uk/house/fanshim_log.html) enter this command in the terminal:
 
 '''
 git clone https\://github\.com/grayerbeard/RPi4_Python_FanshimPWM_Temperature_Control_with_logging\.git -b pwm_fanshim --single-branch /home/pi/fanshim/
@@ -22,9 +22,9 @@ sudo apt-get install tmux
 
 (For info about tmux commands etc see
 '''
-https://iotpoint.wordpress.com/2016/11/15/tmux-terminal-multiplexer-for-raspberry-pi/ 
+[tmux-terminal-multiplexer-for-raspberry-pi](https://iotpoint.wordpress.com/2016/11/15/tmux-terminal-multiplexer-for-raspberry-pi/) 
 or I prefer
-https://danielmiessler.com/study/tmux/ and best of all https://docs.dataplicity.com/docs/run-your-scripts-in-background
+[Daniel Miessler tmux](https://danielmiessler.com/study/tmux/) and best of all [Dataplicity.com docs Run Your Scripts In Background](https://docs.dataplicity.com/docs/run-your-scripts-in-background)
 '''
 or many otherer places if you google for  "tmux tutorial"
 
@@ -32,7 +32,7 @@ or many otherer places if you google for  "tmux tutorial"
 
 Then install the stress testing using the instructions at 
 '''
-https://core-electronics.com.au/tutorials/stress-testing-your-raspberry-pi.html
+[Stress Testing Your Raspberry Pi](https://core-electronics.com.au/tutorials/stress-testing-your-raspberry-pi.html)
 '''
 
 (I have set up a bash command tmux_stress.sh to run the stress test see below)
@@ -160,11 +160,11 @@ Note that this is a branch of a github directory where I am developing variation
 I have used the earlier version developed without GitHub (silly me) for heating with remote monitoring of a  community workshop for over two yaers. 
 A few weeks ago I decided to start getting the code a bit more proffessional looking and use github so I restarted by building up all the classes one at a time and improving them by gradually adding more applications with the aim of making sure code is reusable in the usual maner of good "Software Engineering" principals that I first studied around 35 years ago in the days when one did the required exercises by visiting somewhere where you could enter code on a teletype.
 
-I make frequest use of www.dataplicity.com to sort out issues remotely.  Great fun when someone is visiting the house and they want the Sauna Stove at a warmer temperature and I am in anouther country.  Or the Community Building workshop needs heating at a different time and I am away on holiday.   See other articles at https://www.smalle.uk/r-pi-4-blog for how I set that up.
+I make frequest use of [dataplicity.com](https://www.dataplicity.com) to sort out issues remotely.  Great fun when someone is visiting the house and they want the Sauna Stove at a warmer temperature and I am in anouther country.  Or the Community Building workshop needs heating at a different time and I am away on holiday.   See other articles at [www.smalle.uk/r-pi-4-blog](https://www.smalle.uk/r-pi-4-blog) for how I set that up.
 
 I use dataplicity to open a terminal on my R Pi so can then use the tmux commands outlined above to take a look at what the code is doing. I have tried othet methods but I find it best to use GitHub to edit the code (which you could do once its in your own repository) and I then use "git pull" to put any revised code from GitHub into the R Pi, this can then work even when you are far from home.
-Note that its no good setting code running using SSH or dataplicity terminal direct as then when the link is closed the code stops.  That is the joy of using tmux.  For more info see https://docs.dataplicity.com/docs 
+Note that its no good setting code running using SSH or dataplicity terminal direct as then when the link is closed the code stops.  That is the joy of using tmux.  For more info see [docs.dataplicity.com/docs](https://docs.dataplicity.com/docs)
 
 ## Help
 
-Any issues email me at feedback@smalle.uk or look on https://www.smalle.uk/r-pi-4-blog
+Any issues email me at [feedback@smalle.uk](mailto:feedback@smalle.uk) or look on [www.smalle.uk/r-pi-4-blog](https://www.smalle.uk/r-pi-4-blog)

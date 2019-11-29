@@ -16,13 +16,24 @@ The use of FTP to a remote site is optional and if not set up will be bypassed w
 
 Then install "TMUX" using
 
+'''
 sudo apt-get install tmux
+'''
 
-(For info about tmux commands etc see mux-terminal-multiplexer-for-raspberry-pi or I prefer danielmiessler.com/study/tmux or many otherers if you google "tmux tutorial")
+(For info about tmux commands etc see
+'''
+https://iotpoint.wordpress.com/2016/11/15/tmux-terminal-multiplexer-for-raspberry-pi/ 
+or I prefer
+https://danielmiessler.com/study/tmux/ and best of all https://docs.dataplicity.com/docs/run-your-scripts-in-background
+'''
+or many otherer places if you google for  "tmux tutorial"
 
 ## Install Stress Testing
 
-Then install the stress testing using the instructions at core-electronics.com.au/tutorials/stress-testing-your-raspberry-pi.html
+Then install the stress testing using the instructions at 
+'''
+https://core-electronics.com.au/tutorials/stress-testing-your-raspberry-pi.html
+'''
 
 (I have set up a bash command tmux_stress.sh to run the stress test see below)
 
@@ -30,11 +41,15 @@ Then install the stress testing using the instructions at core-electronics.com.a
 
 Then edit "/etc/rc.local" using the command
 
+'''
 sudo nano /etc/rc.local
+'''
 
 and add
 
+'''
 sudo -u pi bash /home/pi/fanshim/tmux_start.sh &
+'''
 
 ## If want to use FTP to Send Files Edit the FTP_Creds File
 
@@ -52,15 +67,35 @@ Then go to that "fanshim" folder to start testing
 
 Type
 
+'''
 python3 fanshim.py
+'''
 
 to check code working
 
 then enter
 
+'''
 ./tmux_stress.sh
+'''
+
+(Note the full stop at start of above)
 
 To do a stress test.
+
+Then you can check the normal way of starting with 
+
+'''
+./tmux_start.sh
+'''
+
+(Note the full stop at start of above)
+
+Then you can check running with 
+
+'''
+tmux ls
+'''
 
 ## Tweaking
 
@@ -72,13 +107,17 @@ Then do a reboot and check the code runs automatically at start up.
 
 To check after start up to see if its still running enter
 
+'''
 tmux ls
+'''
 
 it should show fanshim is running.
 
 or open the html file
 
+'''
 fanshim_log.html
+'''
 
 in either of these locations : 
 /home/pi/fanshim,
@@ -97,7 +136,7 @@ or open the csv log file in
 /var/www/html/log or 
 '''
 
-via the link at the top of the html file to link to this runs CSV file (csv files are retained until deleted wheras html files get overwritten)
+via the link at the top of the html file that link to the CSV log file (csv files are retained until deleted whereas html files get overwritten; so the csv file is the best way to review long term behavior.
 
 or this command to open a "tmux window" to observe the code's print out
 
@@ -115,13 +154,16 @@ to exit that tmux window enter
 
 In tmux window enter "ctrl C", in fanshim directory enter "./tmux_stop.sh", or enter "tmux kill-session -t fanshim"
 
-## GitHub
+## About using GitHub with Dataplicity 
 
-Note that this is a branch of a github directory where I am developing variations of this sort of control function for cooling and heating with logging and remote monitoring.  An earlier version ran a heating with fan heaters in a community workshop for over two years.  e.g. room heating, sauna stove, central heating monitoring etc.  
-A few weeks ago I decided to start getting the code a bit more proffessional looking and use github so I restarted by building up all the classes one at a time and improving them by gradually adding more applications with the aim of making sure code is reusable in the usual aim of good "Software Engineering" principals that I first studied around 35 years ago!.
+Note that this is a branch of a github directory where I am developing variations of this sort of control function for cooling and heating with logging and remote monitoring, but this branch only has what is needed for fan control with logging.
+I have used the earlier version developed without GitHub (silly me) for heating with remote monitoring of a  community workshop for over two yaers. 
+A few weeks ago I decided to start getting the code a bit more proffessional looking and use github so I restarted by building up all the classes one at a time and improving them by gradually adding more applications with the aim of making sure code is reusable in the usual maner of good "Software Engineering" principals that I first studied around 35 years ago in the days when one did the required exercises by visiting somewhere where you could enter code on a teletype.
 
-I make frequest use of www.dataplicity.com to sort out issues remotely.  Great fun when someone is visiting the house and they want the Sauna Stove at a warmer temperature and I am in anouther country.  Or the Community Building workshop needs heating at a different time and I am away on holiday.   see other articles at https://www.smalle.uk/r-pi-4-blog.
-Then using dataplicity to open a terminal on your R Pi one can use the tmux commands outlined above to take a look at what the code is doing.  Use GitHub to edit the code (once its in your own repository) and use "git pull" to put any revised code into the R Pi even when you are far from home.   Note that its no good setting code running using SSH or dataplicity as then when the link is closed the code stops.  That is the joy of using tmux.
+I make frequest use of www.dataplicity.com to sort out issues remotely.  Great fun when someone is visiting the house and they want the Sauna Stove at a warmer temperature and I am in anouther country.  Or the Community Building workshop needs heating at a different time and I am away on holiday.   See other articles at https://www.smalle.uk/r-pi-4-blog for how I set that up.
+
+I use dataplicity to open a terminal on my R Pi so can then use the tmux commands outlined above to take a look at what the code is doing. I have tried othet methods but I find it best to use GitHub to edit the code (which you could do once its in your own repository) and I then use "git pull" to put any revised code from GitHub into the R Pi, this can then work even when you are far from home.
+Note that its no good setting code running using SSH or dataplicity terminal direct as then when the link is closed the code stops.  That is the joy of using tmux.  For more info see https://docs.dataplicity.com/docs 
 
 ## Help
 

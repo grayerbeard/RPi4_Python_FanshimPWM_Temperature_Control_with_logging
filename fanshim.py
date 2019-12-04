@@ -59,7 +59,7 @@ config = class_config()
 if fileexists(config.config_filename):		
 	print( "will try to read Config File : " ,config.config_filename)
 	config.read_file() # overwrites from file
-else : # no file so my_sensorneeds to be written
+else : # no file so file needs to be writen
 	config.write_file()
 	print("New Config File Made with default values, you probably need to edit it")
 	

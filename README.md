@@ -1,15 +1,15 @@
 # R Pi 4 Python Fanshim PWM_Temperature Control with logging
 
 ## Notes
-December 4th Added the alternative alogorithm which can be selected be editing lines 50 to 54 in fanshim.py
+December 4th Added the alternative alogorithm which can be selected be editing lines 50 to 54 in fanshim.py.  This makes the control a bit better.  This method af using the same class name but different source module is hw I intend to accomodate different control requirements for different applications.
 
-**Recomend if you want to try my fanshim pwm code go to my  [R_Pi_4_Fanshim_PWM](https://github.com/grayerbeard/R_Pi_4_Fanshim_PWM) repository.   I um using this repository for fine tuning so frm time to time there may be code that is not yet working.
+**Recomend if you want to try my fanshim pwm code go to my  [R_Pi_4_Fanshim_PWM](https://github.com/grayerbeard/R_Pi_4_Fanshim_PWM) repository.   I um using this repository for fine tuning so frm time to time there may be code that is not yet working.**
 
 ## Get code
 
-To install this code that was controlling the fan on my R Pi 4 on December 3rd 2019 use the usual green "Clone or Download" button above.
+To install this code that is controlling the fan on my R Pi 4 use the usual green "Clone or Download" button above.
 
-Put the files in a directory /home/pi/fanshim and then following the instructions below.  Some items will not work if you use a different diretory such as the tmux ..sh commands.  However if those are edited to suite you would be OK.
+Put the files in a directory /home/pi/fanshim and then following the instructions below.  Some items will not work if you use a different directory (such as the tmux ..sh commands.)  However if those are edited to suite you would be OK.
 
 The use of FTP to a remote site is optional and if no FTP Credential file is set up will be bypassed with data just logged locally.  The point of this long term logging is that stress tests does not tell you what is happening under normal use when ideally you want a reasonable temperature maintained with minimal use of the fan.
 

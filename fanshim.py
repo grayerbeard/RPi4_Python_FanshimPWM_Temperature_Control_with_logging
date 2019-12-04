@@ -46,7 +46,9 @@ from config import class_config
 from text_buffer import class_text_buffer
 from cpu import class_cpu
 from utility import fileexists,pr,make_time_text
-from alternative_algorithm_using_quarter_spans import class_control
+# choose one of following two lines to choose algorithm
+from algorithm import class_control
+# from alternative_algorithm_using_quarter_spans import class_control
 
 cpu = class_cpu()
 

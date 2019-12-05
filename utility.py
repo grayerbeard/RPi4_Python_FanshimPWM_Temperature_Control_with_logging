@@ -28,6 +28,7 @@
 from csv import DictReader as csv_DictReader
 from datetime import datetime
 from ftplib import FTP
+from subprocess import call as subprocess_call
 
 # Third party imports
 # None
@@ -160,4 +161,9 @@ def send_by_ftp(dbug_send_ftp,ftp_cred,send_filename, save_as_filename, ftp_remo
 		result.append("Error Trying To Send " + send_filename + " file by FTP")
 		print("Error Trying To Send " + send_filename + " file by FTP", "Try setting dbug flag to investigate")
 	return(result)
+
+def do_command(cmnd):
+	subprocess_call(['./' + cmnd])
+
+
 

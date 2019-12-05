@@ -67,6 +67,8 @@ class class_config:
 		self.min_freq = 2.0
 		self.max_freq = 5.0
 		self.brightness = 80
+		self.test_count = 0
+		self.test_load_max = 101
 # End of items set in config.cfg	
 
 # Start of parameters are not saved to the config file
@@ -125,11 +127,10 @@ class class_config:
 		config_write.set(section, 'max_temp',self.max_temp)
 		config_write.set(section, 'min_temp',self.min_temp)
 		config_write.set(section, 'min_speed',self.min_speed)
-		config_write.set(section, 'max_speed',self.max_speed)		
+		config_write.set(section, 'max_speed',self.max_speed)
 		config_write.set(section, 'min_freq',self.min_freq)
 		config_write.set(section, 'max_freq',self.max_freq)
-		config_write.set(section, 'brightness',self.max_freq)			
-		
+		config_write.set(section, 'brightness',self.brightness)
 		# Writing our configuration file to 'self.config_filename'
 		pr(self.dbug, here, "ready to write new config file with default values: " , self.config_filename)
 		with open(self.config_filename, 'w+') as configfile:

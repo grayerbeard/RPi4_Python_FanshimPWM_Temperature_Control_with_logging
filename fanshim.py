@@ -47,9 +47,10 @@ from text_buffer import class_text_buffer
 from cpu import class_cpu
 from utility import fileexists,pr,make_time_text
 ##########################################################################
-# choose one of following two lines to choose algorithm
+# choose one of following three lines to choose algorithm required
 # from algorithm import class_control
-from alternative_algorithm_using_quarter_spans import class_control
+# from alternative_algorithm_using_quarter_spans import class_control
+from algorithm_test_cooling import class_control
 #########################################################################
 
 cpu = class_cpu()
@@ -124,7 +125,7 @@ while (config.scan_count <= config.max_scans) or (config.max_scans == 0):
 		
 		# Control
 		cpu.get_data()
-		control.calc(cpu.temp)
+		control.calc(cpu.temp,cpu.cpu_load)
 		cpu.set_pwm_control_fan(control.freq,control.speed)
 		cpu.control_fan()
 		cpu.update_led_temperature(cpu.temp,config.max_temp,config.min_temp,config.brightness)

@@ -35,6 +35,8 @@
 #https://github.com/ivmech/ivPID
 #first writen November 2019
 
+from utility import do_command
+
 class class_control:  # for calc of freq and speed
 	def __init__(self, config):
 		self.config = config
@@ -44,7 +46,7 @@ class class_control:  # for calc of freq and speed
 		self.last_temp = self.config.min_temp
 		self.quarter_span = 0.25*(self.config.max_temp - self.config.min_temp)
 
-	def calc(self,temp):
+	def calc(self,temp,cpu_load):
 		# Following gives 0 to 1 over range min_temp to max_temp
 		self.throttle = 100*(temp - self.config.min_temp)/(self.config.max_temp - self.config.min_temp)
 		if self.throttle < 0 :

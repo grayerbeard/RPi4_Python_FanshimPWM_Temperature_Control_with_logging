@@ -15,8 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# title           :algorithm.py
-# description     :pwm control for R Pi Cooling Fan
+# title           :algorithm_test_cooling.py
+# description     :pwm control for R Pi Cooling Fan with series of automatic tests 
+#                  that can be used to work out temperature drops due to fan at different speeds
 # author          :David Torrens
 # start date      :2019 11 20
 # version         :0.1

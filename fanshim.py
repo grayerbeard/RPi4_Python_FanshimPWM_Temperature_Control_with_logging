@@ -49,8 +49,8 @@ from utility import fileexists,pr,make_time_text
 ##########################################################################
 # choose one of following three lines to choose algorithm required
 # from algorithm import class_control
-# from alternative_algorithm_using_quarter_spans import class_control
-from algorithm_test_cooling import class_control
+from alternative_algorithm_using_quarter_spans import class_control
+# from algorithm_test_cooling import class_control
 #########################################################################
 
 cpu = class_cpu()

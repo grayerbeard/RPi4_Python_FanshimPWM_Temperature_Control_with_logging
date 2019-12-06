@@ -1,6 +1,9 @@
 # R Pi 4 Python Fanshim PWM_Temperature Control with logging
 
 ## Notes
+
+algorithm_test_cooling.py automatically runs stress tests to measure temperature changes with the fan running at different speeds, and saves separate html and csv files with the test resuklta.  It is put into use by editing lines 50 to 54 of fanshim.py.
+
 December 4th Added the alternative alogorithm which can be selected be editing lines 50 to 54 in fanshim.py.  This makes the control a bit better.  This method of using the same class name but different source module is how I intend to accomodate different control requirements for different applications. Its also a handy way to try a different algorithm and be able to easily return to the old version or to run tests comparing different methods.
 
 **Recomend if you want to try my fanshim pwm code go to my  [R_Pi_4_Fanshim_PWM](https://github.com/grayerbeard/R_Pi_4_Fanshim_PWM) repository.   I am using this repository for fine tuning so from time to time there may be code that is not yet working.**

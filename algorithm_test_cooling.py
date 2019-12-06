@@ -32,34 +32,64 @@
 #first writen November 2019
 
 from utility import do_command
+from text_buffer import class_text_buffer
+from datetime import datetime
 
 class class_control:  # for calc of freq and speed
 	def __init__(self, config):
 		self.config = config
+		self.config.prog_name = "test_" + config.prog_name 
 		self.freq = config.min_freq
-		self.stress_count = 3
+		self.stress_count = 2
 		self.stress_flag = False
 		self.speed = 0
 		self.fan_on = False
 		self.do_first_test_flag = True
 		self.test_count = 20
+		self.last_test_count = 20
+		self.trigger_level = 75
 		self.test_load_max = config.test_load_max
-		self.test_values = [self.config.min_speed] * (self.test_count + 1)
+		self.test_speed = [self.config.min_speed] * (self.test_count + 1)
+		self.test_freq = [self.config.min_freq] * (self.test_count + 1)
+		self.was_test_flag = False
+		self.last_temp = self.config.min_temp
 		for ind_test_values in range(self.test_count,0,-1):
-			self.test_values[ind_test_values] = ((ind_test_values/self.test_count)*(100 - self.config.min_speed)) + self.config.min_speed
-		print("self.test_values : ",self.test_values)
+			self.test_speed[ind_test_values] = ((ind_test_values/self.test_count)*(self.config.max_speed- self.config.min_speed)) + self.config.min_speed
+			self.test_freq[ind_test_values] = ((ind_test_values/self.test_count)*(self.config.max_freq - self.config.min_freq)) + self.config.min_freq
+		print("self.test_values : ",self.test_speed,self.test_freq)
+
+		headings = ["Phase","test","Speed","Freq","Start Temp","End Temp","Temp Drop","cpu_load"]
+		self.test_buffer = class_text_buffer(headings,self.config)
+
+		print("Stop any current stress test")
+		do_command("tmux_stop_stress.sh")
 
 	def calc(self,temp,cpu_load):
+		if self.was_test_flag:
+			#Logging
+			if self.last_do_first_test_flag:
+				self.test_buffer.line_values[0] = "Load Off"
+			else:
+				self.test_buffer.line_values[0] = "Load On"
+			self.test_buffer.line_values[1] = str(self.last_test_count)
+			self.test_buffer.line_values[2] = str(round(self.test_speed[self.last_test_count],3))
+			self.test_buffer.line_values[3] = str(round(self.test_freq[self.last_test_count],3))
+			self.test_buffer.line_values[4] = str(round(self.last_temp,3))
+			self.test_buffer.line_values[5] = str(round(temp,3))
+			self.test_buffer.line_values[6] = str(round(self.last_temp - temp,3))
+			self.test_buffer.line_values[7] = str(round(cpu_load,3))
+			self.test_buffer.pr(True,0,datetime.now(),4.2*self.config.scan_delay)
+			self.was_test_flag = False
 		# Following gives 0 to 1 over range min_temp to max_temp
 		self.throttle = 100*(temp - self.config.min_temp)/(self.config.max_temp - self.config.min_temp)
-		
-		if (self.throttle > 50) and (cpu_load == 100) and self.do_first_test_flag and (self.test_count >= 0):
+		self.last_temp = temp
+		if (self.throttle > self.trigger_level) and (cpu_load == 100) and self.do_first_test_flag and (self.test_count > 0):
 			#warm enough so stop stress test
 			if self.stress_flag:
 				print("Stop stress test")
 				do_command("tmux_stop_stress.sh")
 				self.stress_flag = False
-			self.stress_count = 3
+			self.stress_count = 2
 		if self.stress_count > 0:
 			self.stress_count -= 1
 			print("Doing Count Down, self.stress_count : ",self.stress_count)
@@ -69,26 +99,32 @@ class class_control:  # for calc of freq and speed
 				do_command("tmux_stress.sh")
 				self.stress_flag = True
 			self.stress_count = 0
-		if (self.throttle > 50) and (self.test_count >= 0):# and (cpu_load < self.test_load_max):
-			self.speed = self.test_values[self.test_count]
+		if (self.throttle > self.trigger_level) and (self.test_count > -1 ):
+			self.speed = self.test_speed[self.test_count]
+			self.freq = self.test_freq[self.test_count]
+			print("-----------------------------------------------")
+			print("Test  : ",self.test_count,self.speed,self.freq)
+			print("-----------------------------------------------")
+			self.last_test_count = self.test_count
+			self.last_do_first_test_flag = self.do_first_test_flag
+			self.last_test_count = self.test_count
 			self.test_count -=1
-			print("Tests Left to do is : ",self.test_count)
 			self.fan_on = True
 			self.throttle  = 101
-			self.freq = self.config.max_freq
+			self.was_test_flag = True
 		elif self.throttle < 0 :
 			# Fan Off
 			self.freq = self.config.min_freq
 			self.speed = 0
 			self.throttle = 0
 			self.fan_on = False 
-		elif self.throttle > 100 and (self.test_count <= 0):
+		elif self.throttle > 100 and (self.test_count < 0):
 			# Fan at Max
 			self.freq = self.config.max_freq
 			self.speed = self.config.max_speed
 			self.throttle  = 100
 			self.fan_on = True 
-		elif (self.test_count <= 0):
+		elif (self.test_count < 0):
 			# Fan "Throttled" between Min_speed and max_speed
 			# Simarly for frequency
 			self.freq = (self.throttle*(self.config.max_freq - self.config.min_freq)/100) + self.config.min_freq
@@ -104,8 +140,10 @@ class class_control:  # for calc of freq and speed
 			self.speed = 0
 			self.throttle = 0
 			self.fan_on = False
-		if self.do_first_test_flag and (self.test_count <= 0):
+		if self.do_first_test_flag and (self.last_test_count <= 0):
 			self.test_count = 20
 			self.do_first_test_flag = False
-			print("Starting second test")
+			print("------------------------Starting second test")
 			self.throttle = 104
+		else:
+			print("------------------------self.last_test_count : ",self.last_test_count)

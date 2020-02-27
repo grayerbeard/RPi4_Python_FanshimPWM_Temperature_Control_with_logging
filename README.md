@@ -1,3 +1,6 @@
+# Version using pimorini 0.0.4 code.
+see https://github.com/DT-was-an-ET/fanshim-python-pwm 
+
 # RPi Temperature_Control_with_logging
 
 This repository MASTER is my central place for my projects on temperature heating and cooling control  with  looging and remote control.
